@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>高一數學試聽｜得勝者文教</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand: #7B2252;
+      --brand-dark: #4A1133;
+      --brand-light: #f3e8f0;
+      --gold: #C9A84C;
+      --ink: #1a1a1a;
+      --ink-2: #444;
+      --ink-3: #888;
+      --bg: #ffffff;
+      --r: 14px;
+      --r-lg: 24px;
+      --shadow: 0 8px 32px rgba(123,34,82,.12);
+    }
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(15,5,9,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 900; font-size: 16px; color: #fff;
+      text-decoration: none;
+    }
+    .nav-logo .v-badge {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--brand);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 900; font-size: 14px;
+    }
+    .nav-cta {
+      background: var(--brand);
+      color: #fff; font-weight: 700; font-size: 14px;
+      padding: 10px 24px; border-radius: 100px;
+      text-decoration: none;
+      transition: background .2s, transform .2s;
+    }
+    .nav-cta:hover { background: var(--brand-dark); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero-section-wrap {
+      background:
+        radial-gradient(ellipse 60% 55% at 10% 30%, rgba(123,34,82,.7) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 45% at 90% 70%, rgba(74,17,51,.6) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 35% at 55% 5%, rgba(201,168,76,.25) 0%, transparent 50%),
+        #0f0509;
+      overflow: hidden;
+    }
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 40px;
+      padding: 120px 64px 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: none;
+      overflow: hidden;
+    }
+    .hero-left {
+      display: flex; flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      justify-content: center;
+    }
+    .hero-right .hero-teacher-card {
+      width: 80%;
+      aspect-ratio: 1316 / 766;
+      box-shadow: 16px 24px 56px rgba(0,0,0,.35);
+    }
+    .hero-right .hero-teacher-card:first-child {
+      align-self: flex-end;
+    }
+    .hero-right .hero-teacher-card:last-child {
+      align-self: flex-start;
+    }
+    /* Float 動畫 */
+    @keyframes floatUp {
+      0%, 100% { transform: perspective(1000px) rotateY(-5deg) rotateX(2deg) translateY(0); }
+      50% { transform: perspective(1000px) rotateY(-5deg) rotateX(2deg) translateY(-10px); }
+    }
+    @keyframes floatDown {
+      0%, 100% { transform: perspective(1000px) rotateY(-5deg) rotateX(-2deg) translateY(0); }
+      50% { transform: perspective(1000px) rotateY(-5deg) rotateX(-2deg) translateY(-10px); }
+    }
+    .hero-right .hero-teacher-card:first-child {
+      animation: floatUp 5s ease-in-out infinite;
+    }
+    .hero-right .hero-teacher-card:last-child {
+      animation: floatDown 5s ease-in-out infinite;
+      animation-delay: .8s;
+    }
+    .hero-teacher-card {
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      position: relative;
+      aspect-ratio: 4/3;
+      background: var(--brand-light);
+    }
+    .hero-teacher-photo {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; color: var(--ink-3); font-weight: 700;
+      text-align: center; line-height: 1.6;
+    }
+    .hero-teacher-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 20%;
+      display: block;
+    }
+    .hero-teacher-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 24px 16px 14px;
+      background: linear-gradient(to top, rgba(0,0,0,.6) 0%, transparent 100%);
+    }
+    .hero-teacher-name { display: none; }
+    .hero-teacher-tag {
+      font-size: 12px; font-weight: 700;
+      color: rgba(255,255,255,.8);
+      letter-spacing: .04em;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.1);
+      color: rgba(255,255,255,.75);
+      font-size: 13px; font-weight: 700;
+      padding: 6px 16px; border-radius: 100px;
+      letter-spacing: .04em;
+      margin-bottom: 28px;
+      border: 1px solid rgba(255,255,255,.15);
+    }
+    .hero-eyebrow .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold);
+    }
+
+    /* 什麼 */
+    .hero-headline {
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 900;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 24px;
+      letter-spacing: -.01em;
+    }
+    .hero-headline .hl {
+      color: var(--gold);
+      position: relative;
+    }
+
+    /* 更好 */
+    .hero-benefits {
+      display: flex; flex-direction: column; gap: 10px;
+      margin-bottom: 44px;
+    }
+    .hero-benefit {
+      font-size: clamp(15px, 2vw, 18px);
+      color: rgba(255,255,255,.7);
+      line-height: 1.6;
+    }
+    .hero-benefit strong { color: #fff; font-weight: 700; }
+    .hero-benefit .reward {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(201,168,76,.15);
+      border: 1.5px solid rgba(201,168,76,.5);
+      color: var(--gold);
+      font-weight: 700; font-size: 14px;
+      padding: 3px 12px; border-radius: 100px;
+      margin-left: 6px;
+    }
+
+    /* CTAs */
+    .hero-ctas {
+      display: flex; gap: 14px; flex-wrap: wrap;
+      justify-content: center;
+    }
+    /* 直接的行動召喚 */
+    .btn-direct {
+      background: var(--brand);
+      color: #fff; font-weight: 700; font-size: 16px;
+      padding: 16px 36px; border-radius: 100px;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(123,34,82,.3);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-direct:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(123,34,82,.4); }
+    /* 過渡的行動召喚 */
+    .btn-transition {
+      background: transparent;
+      color: var(--brand); font-weight: 700; font-size: 16px;
+      padding: 16px 36px; border-radius: 100px;
+      border: 2px solid var(--brand);
+      text-decoration: none;
+      transition: background .2s, color .2s;
+    }
+    .btn-transition:hover { background: var(--brand-light); }
+
+    /* ── TEACHERS ── */
+    .teachers {
+      display: flex; gap: 20px; justify-content: center;
+      margin: 56px 24px 0;
+      flex-wrap: wrap;
+    }
+    .teacher-card {
+      background: var(--bg);
+      border: 1.5px solid rgba(123,34,82,.15);
+      border-radius: var(--r-lg);
+      padding: 28px 32px;
+      min-width: 220px; max-width: 260px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .teacher-avatar {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: var(--brand-light);
+      margin: 0 auto 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      border: 3px solid var(--gold);
+    }
+    .teacher-name { font-size: 20px; font-weight: 900; color: var(--ink); margin-bottom: 4px; }
+    .teacher-title { font-size: 13px; color: var(--brand); font-weight: 700; margin-bottom: 14px; }
+    .teacher-dates { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+    .date-tag {
+      font-size: 12px; font-weight: 700;
+      background: var(--brand-light); color: var(--brand);
+      padding: 4px 10px; border-radius: 6px;
+    }
+
+    /* ── REWARD BANNER ── */
+    .reward-banner {
+      margin: 48px 24px 0;
+      background: linear-gradient(135deg, #fffbf0, #fff8e0);
+      border: 2px solid var(--gold);
+      border-radius: var(--r-lg);
+      padding: 24px 40px;
+      display: flex; gap: 40px; justify-content: center;
+      flex-wrap: wrap; text-align: center;
+    }
+    .reward-item { display: flex; flex-direction: column; gap: 6px; }
+    .reward-condition { font-size: 13px; color: var(--ink-3); font-weight: 500; }
+    .reward-prize { font-size: 18px; font-weight: 900; color: #7a5c00; }
+
+    /* ── REWARD ROW ── */
+    .reward-row {
+      display: flex; gap: 10px; justify-content: center;
+      flex-wrap: wrap; margin-top: 6px;
+    }
+
+    /* ── STAKES ── */
+    .stakes {
+      background: #111;
+      padding: 80px 24px;
+    }
+    .stakes-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .stakes-eyebrow {
+      font-size: 12px; font-weight: 700; letter-spacing: .1em;
+      color: rgba(255,255,255,.4);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .stakes-headline {
+      font-size: clamp(24px, 4vw, 40px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 20px;
+    }
+    .stakes-sub {
+      font-size: 15px; line-height: 1.8;
+      color: rgba(255,255,255,.55);
+      margin-bottom: 52px;
+    }
+    .stakes-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 600px;
+      margin: 0 auto 44px;
+    }
+    .stakes-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: 14px;
+    }
+    .stakes-icon {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: rgba(255,255,255,.08);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .stakes-card-title {
+      font-size: 18px; font-weight: 900;
+      color: #fff;
+      line-height: 1.3;
+    }
+    .stakes-card-desc {
+      font-size: 14px; color: rgba(255,255,255,.55);
+      line-height: 1.75;
+    }
+    .stakes-conclusion {
+      font-size: 16px; line-height: 1.8;
+      color: rgba(255,255,255,.7);
+    }
+    .stakes-conclusion strong {
+      color: #fff;
+    }
+
+    /* 桌面：手機版照片隱藏 */
+    .hero-teachers-mobile { display: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 100px 20px 60px;
+        text-align: center;
+      }
+      .hero-left { align-items: center; text-align: center; }
+      .hero-right { display: none; }
+      .hero-teachers-mobile {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+        width: 100%; margin-bottom: 28px;
+      }
+      .hero-ctas {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        width: 100%; max-width: 360px;
+      }
+      .btn-direct, .btn-transition {
+        text-align: center;
+        padding: 14px 12px;
+        font-size: 14px;
+      }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 14px 20px; }
+      .stakes-cards {
+        grid-template-columns: 1fr 1fr;
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">
+      <div class="v-badge">V+</div>
+      得勝者文教
+    </a>
+    <a class="nav-cta" href="#signup">立即報名</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero-section-wrap">
+  <section class="hero">
+
+    <!-- 左：文字 -->
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <div class="dot"></div>
+        高一數學試聽・名額有限
+      </div>
+
+      <h1 class="hero-headline">
+        一次試聽<br>
+        <span class="hl">兩位頂尖數學名師</span>
+      </h1>
+
+      <div class="hero-benefits">
+        <p class="hero-benefit">
+          <strong>免費試聽</strong>，開學前找到對的老師
+        </p>
+        <p class="hero-benefit">聽一堂 <span class="reward">☕ 大杯星巴克</span></p>
+        <p class="hero-benefit">兩堂拿 <span class="reward">💰 1,000元現金</span></p>
+      </div>
+
+      <!-- 手機版：照片插在這裡 -->
+      <div class="hero-teachers-mobile">
+        <div class="hero-teacher-card">
+          <div class="hero-teacher-photo">
+            <img src="teacher-jie.jpg" alt="解創智老師" />
+          </div>
+          <div class="hero-teacher-info">
+            <div class="hero-teacher-name">解創智老師</div>
+            <div class="hero-teacher-tag">傳奇數學名師</div>
+          </div>
+        </div>
+        <div class="hero-teacher-card">
+          <div class="hero-teacher-photo">
+            <img src="teacher-chen.jpg" alt="陳建州老師" />
+          </div>
+          <div class="hero-teacher-info">
+            <div class="hero-teacher-name">陳建州老師</div>
+            <div class="hero-teacher-tag">數學鬼才</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-ctas">
+        <a href="#signup" class="btn-direct">立即填表報名</a>
+        <a href="#schedule" class="btn-transition">查看更多</a>
+      </div>
+    </div>
+
+    <!-- 右：老師照片（桌面版，3D浮卡） -->
+    <div class="hero-right">
+      <div class="hero-teacher-card">
+        <div class="hero-teacher-photo">
+          <img src="teacher-jie.jpg" alt="解創智老師" />
+        </div>
+        <div class="hero-teacher-info">
+          <div class="hero-teacher-name">解創智老師</div>
+          <div class="hero-teacher-tag">傳奇數學名師</div>
+        </div>
+      </div>
+      <div class="hero-teacher-card">
+        <div class="hero-teacher-photo">
+          <img src="teacher-chen.jpg" alt="陳建州老師" />
+        </div>
+        <div class="hero-teacher-info">
+          <div class="hero-teacher-name">陳建州老師</div>
+          <div class="hero-teacher-tag">數學鬼才</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  </div>
+
+
+  <!-- STAKES -->
+  <section class="stakes">
+    <div class="stakes-inner">
+      <p class="stakes-eyebrow">你可能也聽說過</p>
+      <h2 class="stakes-headline">升高中後，數學難度三級跳</h2>
+      <p class="stakes-sub">不少會考 A++ 的孩子，高一第一次段考就掉到 60、50、40 分。</p>
+
+      <div class="stakes-cards">
+
+        <div class="stakes-card">
+          <div class="stakes-icon">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polyline points="4,8 14,20 22,14 32,28" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="24,28 32,28 32,20" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="stakes-card-title">難度三級跳</h3>
+          <p class="stakes-card-desc">升高中後<br>數學難度急速攀升</p>
+        </div>
+
+        <div class="stakes-card">
+          <div class="stakes-icon">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="18" cy="18" r="13" stroke="white" stroke-width="2.5"/>
+              <line x1="11" y1="11" x2="25" y2="25" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="stakes-card-title">遊戲規則不同</h3>
+          <p class="stakes-card-desc">國中可以靠背公式<br>高中開始<br>考「思考」和「邏輯」</p>
+        </div>
+
+
+      </div>
+
+      <p class="stakes-conclusion">兩種完全不同的能力——<br><strong>很少學生在升高中前真正搞清楚、提前準備。</strong></p>
+    </div>
+  </section>
+
+</body>
+</html>
