@@ -876,6 +876,17 @@
       padding: 8px;
       min-height: 320px;
     }
+    .signup-fallback {
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--ink-3);
+    }
+    .signup-fallback a {
+      color: var(--brand);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .signup-fallback a:hover { text-decoration: underline; }
 
     .plan-step-body {
       display: flex; flex-direction: column; gap: 4px;
@@ -1441,18 +1452,15 @@
       <div class="signup-form-wrap">
         <div data-tally-src="https://tally.so/r/Y5pyX6"
              data-tally-layout="inline"
-             data-tally-transparent-background="1">
+             data-tally-transparent-background="1"
+             data-tally-width="100%">
         </div>
-        <script>
-          var d=document,w="https://tally.so/widgets/embed.js",
-          v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():
-          d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(
-          function(e){e.src=e.dataset.tallySrc})};
-          if("undefined"!=typeof Tally)v();
-          else if(d.querySelector('script[src="'+w+'"]')==null){
-          var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
-        </script>
+        <script async src="https://tally.so/widgets/embed.js"></script>
       </div>
+
+      <p class="signup-fallback">
+        表單無法顯示？<a href="https://tally.so/r/Y5pyX6" target="_blank" rel="noopener">點此直接填表 →</a>
+      </p>
     </div>
   </section>
 
