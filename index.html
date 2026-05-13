@@ -917,6 +917,29 @@
       padding: 32px 28px;
       overflow: hidden;
     }
+    /* Scroll hint overlay at bottom of form card */
+    .signup-right {
+      position: relative;
+    }
+    .signup-scroll-hint {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 80px;
+      background: linear-gradient(to top, #fff 40%, transparent 100%);
+      display: flex; align-items: flex-end; justify-content: center;
+      padding-bottom: 12px;
+      pointer-events: none;
+      border-radius: 0 0 20px 20px;
+    }
+    .signup-scroll-hint span {
+      font-size: 12px; font-weight: 700; color: var(--brand);
+      letter-spacing: .06em;
+      animation: scrollHintBounce 1.6s ease-in-out infinite;
+    }
+    @keyframes scrollHintBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(5px); }
+    }
     .signup-form-card iframe {
       display: block;
     }
@@ -1127,9 +1150,9 @@
   <!-- STAKES -->
   <section class="stakes">
     <div class="stakes-inner">
-      <p class="stakes-eyebrow">國三升高一<span class="stakes-eyebrow-hl">準備不足的學生</span></p>
-      <h2 class="stakes-headline">第一次段考<br>從 <span class="stakes-num">A++</span> 摔到 <span class="stakes-fall">40 分</span></h2>
-      <p class="stakes-sub">不是學生程度變差，<br>問題只出在這兩件事</p>
+      <p class="stakes-eyebrow">國三升高一時如果準備不足</p>
+      <h2 class="stakes-headline">第一次段考容易<br>成績下滑</h2>
+      <p class="stakes-sub">不是學生不認真，<br>問題出在這兩件事</p>
       <div class="stakes-sub-arrow" aria-hidden="true">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
@@ -1145,7 +1168,7 @@
             </svg>
           </div>
           <h3 class="stakes-card-title">難度三級跳</h3>
-          <p class="stakes-card-desc">準備不足的學生<br>第一週就跟不上節奏</p>
+          <p class="stakes-card-desc">準備不足的學生<br>前兩週就跟不上節奏</p>
         </div>
 
         <div class="stakes-card">
@@ -1156,7 +1179,7 @@
             </svg>
           </div>
           <h3 class="stakes-card-title">遊戲規則不同</h3>
-          <p class="stakes-card-desc">國中靠背公式<br>高中考思考和邏輯</p>
+          <p class="stakes-card-desc">高中數學<br>考「思考」和「邏輯」</p>
         </div>
 
 
@@ -1198,7 +1221,7 @@
             </svg>
           </div>
           <h3 class="value-card-title">免費試聽，還有獎勵可拿</h3>
-          <p class="value-card-desc">聽一堂拿星巴克，兩堂拿 1,000 元現金。<br>全程免費，聽完喜歡馬上報名。</p>
+          <p class="value-card-desc">每聽一堂請你喝一杯星巴克，兩堂拿 1,000 元現金。<br>全程免費，聽完喜歡馬上報名。</p>
           <span class="value-card-tag">無負擔・有獎勵</span>
         </div>
 
@@ -1210,8 +1233,8 @@
               <polyline points="21,8 26,8 26,13" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <h3 class="value-card-title">先修一步，高中起跑就領先</h3>
-          <p class="value-card-desc">提前摸清高中數學的思維邏輯，開學就比同學快一步。<br>想衝數理資優班的學生，更適合先來體驗。</p>
+          <h3 class="value-card-title">高中起跑就領先</h3>
+          <p class="value-card-desc">提前摸清高中數學的思維邏輯，開學就比同學快一步。</p>
           <span class="value-card-tag">競爭優勢</span>
         </div>
 
@@ -1235,7 +1258,7 @@
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="6" y="10" width="20" height="14" rx="3" stroke="white" stroke-width="2.2"/><path d="M11 10V8a5 5 0 0 1 10 0v2" stroke="white" stroke-width="2.2" stroke-linecap="round"/><circle cx="16" cy="17" r="2" fill="white"/></svg>
             </div>
             <h3 class="value-card-title">免費試聽，還有獎勵可拿</h3>
-            <p class="value-card-desc">聽一堂拿星巴克，兩堂拿 1,000 元現金。<br>全程免費，聽完喜歡馬上報名。</p>
+            <p class="value-card-desc">每聽一堂請你喝一杯星巴克，兩堂拿 1,000 元現金。<br>全程免費，聽完喜歡馬上報名。</p>
             <span class="value-card-tag">無負擔・有獎勵</span>
           </div>
 
@@ -1577,7 +1600,7 @@
           </div>
           <div class="signup-detail-row">
             <span class="signup-detail-label">禮物</span>
-            <span class="signup-detail-val">聽一堂 ☕ 星巴克・兩堂 💰 千元現金</span>
+            <span class="signup-detail-val">聽一堂 ☕ 大杯星巴克・兩堂 💰 千元現金</span>
           </div>
         </div>
 
@@ -1600,6 +1623,9 @@
             title="高一數學試聽報名表">
           </iframe>
         </div>
+        <div class="signup-scroll-hint" id="signupScrollHint">
+          <span>↓ 往下填寫</span>
+        </div>
       </div>
 
     </div>
@@ -1607,6 +1633,22 @@
 
 
   <!-- Hero teacher card → guide tab -->
+  <script>
+    // ── Signup scroll hint: hide once user scrolls past it ──
+    (function() {
+      var hint = document.getElementById('signupScrollHint');
+      if (!hint) return;
+      window.addEventListener('scroll', function() {
+        var rect = hint.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.6) {
+          hint.style.transition = 'opacity .4s';
+          hint.style.opacity = '0';
+          hint.style.pointerEvents = 'none';
+        }
+      });
+    })();
+  </script>
+
   <script>
     document.querySelectorAll('.hero-teacher-card[data-tab]').forEach(function(card) {
       card.addEventListener('click', function(e) {
