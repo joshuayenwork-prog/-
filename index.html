@@ -29,6 +29,21 @@
       background: var(--bg);
       color: var(--ink);
       min-height: 100vh;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    /* —— 全站斷行守則：句號在行尾、不在詞中間斷字 —— */
+    .hero-headline, .stakes-headline, .value-headline,
+    .guide-headline, .plan-headline, .signup-headline {
+      text-wrap: balance;
+      word-break: keep-all;
+    }
+    .hero-benefit, .stakes-sub, .stakes-card-desc, .stakes-conclusion,
+    .value-sub, .value-card-desc, .guide-sub, .plan-step-desc,
+    .signup-sub, .guide-right-quote {
+      text-wrap: pretty;
+      word-break: keep-all;
     }
 
     /* ── NAV ── */
@@ -63,122 +78,85 @@
     /* ── HERO ── */
     .hero-section-wrap {
       background:
-        radial-gradient(ellipse 60% 55% at 10% 30%, rgba(123,34,82,.7) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 45% at 90% 70%, rgba(74,17,51,.6) 0%, transparent 55%),
-        radial-gradient(ellipse 40% 35% at 55% 5%, rgba(201,168,76,.25) 0%, transparent 50%),
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(123,34,82,.55) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 20% 80%, rgba(74,17,51,.5) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 35% at 80% 10%, rgba(201,168,76,.18) 0%, transparent 50%),
         #0f0509;
       overflow: hidden;
     }
     .hero {
       min-height: 100vh;
-      display: grid;
-      grid-template-columns: 3fr 1fr;
-      align-items: start;
-      gap: 48px;
-      padding: 120px 64px 80px;
-      max-width: 1200px;
-      margin: 0 auto;
-      background: none;
-      overflow: hidden;
-    }
-    .hero-left {
-      display: flex; flex-direction: column;
-      align-items: flex-start;
-      text-align: left;
-      min-width: 0;
-    }
-    .hero-right {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      align-self: start;
-      width: 100%;
-    }
-    .hero-right .hero-main-card {
-      width: 100%;
-      aspect-ratio: 3 / 4;
-      box-shadow: 12px 18px 44px rgba(0,0,0,.4);
-      transition: transform .3s ease, box-shadow .3s ease;
-    }
-    .hero-right .hero-main-card .hero-teacher-photo img {
-      transition: opacity .3s ease;
-    }
-    .hero-right .hero-main-card.is-swapping .hero-teacher-photo img {
-      opacity: 0;
-    }
-    .hero-teacher-thumbs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    .hero-teacher-thumb {
-      background: rgba(255,255,255,.05);
-      border: 2px solid rgba(255,255,255,.12);
-      border-radius: 12px;
-      padding: 8px 8px 10px;
-      cursor: pointer;
-      transition: all .2s ease;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
-      font-family: inherit;
+      justify-content: center;
+      padding: 120px 48px 100px;
+      text-align: center;
     }
-    .hero-teacher-thumb img {
+    .hero-inner {
+      max-width: 860px;
       width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      object-position: center 20%;
-      border-radius: 8px;
-      display: block;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    .hero-teacher-thumb span {
-      color: rgba(255,255,255,.7);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: .04em;
-    }
-    .hero-teacher-thumb:hover {
-      border-color: rgba(201,168,76,.55);
-      transform: translateY(-1px);
-    }
-    .hero-teacher-thumb.is-active {
-      border-color: var(--gold);
-      background: rgba(201,168,76,.18);
-      box-shadow: 0 6px 18px rgba(201,168,76,.18);
-    }
-    .hero-teacher-thumb.is-active span {
-      color: #fff;
+
+    /* Two equal teacher cards */
+    .hero-teachers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      width: 100%;
+      max-width: 760px;
+      margin: 40px 0 44px;
     }
     .hero-teacher-card {
-      border-radius: var(--r-lg);
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: var(--shadow);
       position: relative;
-      aspect-ratio: 4/3;
+      aspect-ratio: 16/9;
       background: var(--brand-light);
+      box-shadow: 0 16px 48px rgba(0,0,0,.45);
     }
     .hero-teacher-photo {
       width: 100%; height: 100%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 12px; color: var(--ink-3); font-weight: 700;
-      text-align: center; line-height: 1.6;
     }
     .hero-teacher-photo img {
       width: 100%; height: 100%;
-      object-fit: cover; object-position: center 20%;
+      object-fit: cover; object-position: center center;
       display: block;
     }
     .hero-teacher-info {
       position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 24px 16px 14px;
+      padding: 32px 14px 12px;
       background: linear-gradient(to top, rgba(0,0,0,.6) 0%, transparent 100%);
+      text-align: left;
     }
     .hero-teacher-name { display: none; }
     .hero-teacher-tag {
       font-size: 12px; font-weight: 700;
-      color: rgba(255,255,255,.8);
-      letter-spacing: .04em;
+      color: var(--gold);
+      letter-spacing: .06em;
+    }
+
+    /* 老師卡可點擊 */
+    a.hero-teacher-card {
+      display: block;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    a.hero-teacher-card:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 24px 56px rgba(0,0,0,.55);
+    }
+
+    /* Rewards line below CTAs */
+    .hero-rewards {
+      font-size: 13px;
+      color: rgba(255,255,255,.45);
+      margin-top: 18px;
+      letter-spacing: .02em;
     }
 
     .hero-eyebrow {
@@ -198,12 +176,12 @@
 
     /* 什麼 */
     .hero-headline {
-      font-size: clamp(36px, 6vw, 64px);
+      font-size: clamp(36px, 6vw, 68px);
       font-weight: 900;
-      line-height: 1.15;
+      line-height: 1.12;
       color: #fff;
-      margin-bottom: 24px;
-      letter-spacing: -.01em;
+      margin-bottom: 20px;
+      letter-spacing: -.02em;
     }
     .hero-headline .hl {
       color: var(--gold);
@@ -211,25 +189,12 @@
     }
 
     /* 更好 */
-    .hero-benefits {
-      display: flex; flex-direction: column; gap: 10px;
-      margin-bottom: 44px;
-    }
     .hero-benefit {
       font-size: clamp(15px, 2vw, 18px);
       color: rgba(255,255,255,.7);
       line-height: 1.6;
     }
     .hero-benefit strong { color: #fff; font-weight: 700; }
-    .hero-benefit .reward {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(201,168,76,.15);
-      border: 1.5px solid rgba(201,168,76,.5);
-      color: var(--gold);
-      font-weight: 700; font-size: 14px;
-      padding: 3px 12px; border-radius: 100px;
-      margin-left: 6px;
-    }
 
     /* CTAs */
     .hero-ctas {
@@ -242,20 +207,23 @@
       color: #fff; font-weight: 700; font-size: 16px;
       padding: 16px 36px; border-radius: 100px;
       text-decoration: none;
-      box-shadow: 0 8px 24px rgba(123,34,82,.3);
+      box-shadow: 0 8px 24px rgba(123,34,82,.4);
       transition: transform .2s, box-shadow .2s;
     }
-    .btn-direct:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(123,34,82,.4); }
-    /* 過渡的行動召喚 */
+    .btn-direct:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(123,34,82,.5); }
+    /* 過渡的行動召喚 — white outline on dark bg */
     .btn-transition {
       background: transparent;
-      color: var(--brand); font-weight: 700; font-size: 16px;
+      color: #fff; font-weight: 700; font-size: 16px;
       padding: 16px 36px; border-radius: 100px;
-      border: 2px solid var(--brand);
+      border: 2px solid rgba(255,255,255,.4);
       text-decoration: none;
-      transition: background .2s, color .2s;
+      transition: background .2s, border-color .2s;
     }
-    .btn-transition:hover { background: var(--brand-light); }
+    .btn-transition:hover {
+      background: rgba(255,255,255,.1);
+      border-color: rgba(255,255,255,.65);
+    }
 
     /* ── STAKES ── */
     .stakes {
@@ -344,36 +312,33 @@
     }
     .stakes-conclusion strong { color: #fff; }
 
-    /* 桌面：手機版照片隱藏 */
-    .hero-teachers-mobile { display: none; }
-
     /* ── RESPONSIVE ── */
-    @media (max-width: 860px) {
+    @media (max-width: 600px) {
+      nav { padding: 14px 20px; }
       .hero {
-        grid-template-columns: 1fr;
-        padding: 100px 20px 60px;
-        text-align: center;
+        padding: 100px 16px 64px;
       }
-      .hero-left { align-items: center; text-align: center; }
-      .hero-right { display: none; }
-      .hero-teachers-mobile {
-        display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-        width: 100%; margin-bottom: 28px;
+      .hero-teachers {
+        max-width: 100%;
+        gap: 10px;
+        margin: 28px 0 32px;
+        /* Stack vertically on small screens */
+        grid-template-columns: 1fr;
+      }
+      .hero-teacher-card {
+        aspect-ratio: 16/9;
       }
       .hero-ctas {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 10px;
-        width: 100%; max-width: 360px;
+        width: 100%;
       }
       .btn-direct, .btn-transition {
         text-align: center;
-        padding: 14px 12px;
+        padding: 14px 10px;
         font-size: 14px;
       }
-    }
-    @media (max-width: 600px) {
-      nav { padding: 14px 20px; }
       .stakes-cards {
         grid-template-columns: 1fr 1fr;
         max-width: 100%;
@@ -400,19 +365,27 @@
       font-size: clamp(24px, 4vw, 40px);
       font-weight: 900;
       color: var(--ink);
-      line-height: 1.25;
+      line-height: 1.3;
       margin-bottom: 14px;
+      text-wrap: balance;
+      word-break: keep-all;
     }
     .value-sub {
       font-size: 16px; line-height: 1.8;
       color: var(--ink-2);
       margin-bottom: 64px;
-      max-width: 560px;
+      max-width: 620px;
       margin-left: auto; margin-right: auto;
+      text-wrap: pretty;
+      word-break: keep-all;
+    }
+    .value-sub .nobreak {
+      display: inline-block;
     }
     .value-cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
+      align-items: stretch;
       gap: 24px;
       margin-bottom: 56px;
     }
@@ -421,9 +394,11 @@
       border-radius: var(--r-lg);
       padding: 40px 28px 36px;
       text-align: center;
-      display: flex; flex-direction: column; align-items: center; gap: 18px;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 18px;
       border: 1.5px solid rgba(123,34,82,.1);
       transition: transform .2s, box-shadow .2s;
+      height: 100%;
     }
     .value-card:hover {
       transform: translateY(-4px);
@@ -439,10 +414,13 @@
       font-size: 20px; font-weight: 900;
       color: var(--ink);
       line-height: 1.3;
+      min-height: 2.6em;
+      display: flex; align-items: center; justify-content: center;
     }
     .value-card-desc {
       font-size: 14px; color: var(--ink-2);
       line-height: 1.8;
+      flex-grow: 1;
     }
     .value-card-tag {
       display: inline-flex; align-items: center;
@@ -451,7 +429,7 @@
       color: var(--brand);
       font-size: 12px; font-weight: 700;
       padding: 4px 14px; border-radius: 100px;
-      margin-top: 4px;
+      margin-top: auto;
     }
     .value-cta-wrap {
       display: flex; justify-content: center;
@@ -515,12 +493,24 @@
 
     /* ── GUIDE (Apple Neo style) ── */
     .guide {
-      background: #fff;
-      border-top: 1px solid rgba(123,34,82,.08);
+      background: #f8f4f6;
+      border-top: 1px solid rgba(123,34,82,.12);
+      box-shadow: inset 0 8px 24px -16px rgba(123,34,82,.18);
+      position: relative;
+      overflow-x: hidden;
+    }
+    .guide::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 64px; height: 3px;
+      background: var(--brand);
+      border-radius: 0 0 4px 4px;
     }
     .guide-header {
       text-align: center;
-      padding: 80px 24px 0;
+      padding: 110px 24px 0;
       max-width: 640px; margin: 0 auto;
     }
     .guide-eyebrow {
@@ -535,6 +525,32 @@
     .guide-sub {
       font-size: 16px; color: var(--ink-2);
       line-height: 1.8;
+      margin-bottom: 40px;
+    }
+    .guide-quote {
+      position: relative;
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px 36px 28px;
+      margin: 0 auto;
+      max-width: 520px;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(123,34,82,.08);
+    }
+    .guide-quote::before {
+      content: '\201C';
+      position: absolute;
+      top: -18px; left: 50%;
+      transform: translateX(-50%);
+      font-size: 72px; line-height: 1;
+      color: var(--brand);
+      font-family: Georgia, serif;
+    }
+    .guide-quote-label { display: none; }
+    .guide-quote-text {
+      font-size: 16px; color: var(--ink);
+      line-height: 1.9;
+      font-style: italic;
     }
 
     /* Teacher tab switcher */
@@ -556,7 +572,7 @@
       box-shadow: 0 2px 8px rgba(0,0,0,.1);
     }
 
-    /* Panel: two-column Apple layout */
+    /* Panel: two-column desktop layout */
     .guide-panel { display: none; }
     .guide-panel.active { display: flex; }
     .guide-panel-wrap {
@@ -585,6 +601,13 @@
     }
 
     /* Accordion items */
+    .accord-list-wrap { position: relative; }
+    .accord-list-wrap::after {
+      content: ''; position: absolute;
+      top: 0; right: 0; bottom: 0; width: 56px;
+      background: linear-gradient(to left, #f8f4f6 10%, transparent 100%);
+      pointer-events: none;
+    }
     .accord-list { border-top: 1px solid rgba(0,0,0,.1); }
     .accord-item { border-bottom: 1px solid rgba(0,0,0,.1); }
     .accord-trigger {
@@ -592,8 +615,7 @@
       justify-content: space-between;
       padding: 18px 0;
       background: none; border: none; cursor: pointer;
-      text-align: left;
-      gap: 12px;
+      text-align: left; gap: 12px;
     }
     .accord-trigger:hover .accord-label { color: var(--brand); }
     .accord-label {
@@ -607,22 +629,14 @@
       font-size: 16px; font-weight: 400; color: var(--ink-2);
       transition: background .2s, transform .3s;
     }
-    .accord-item.open .accord-icon {
-      background: var(--brand); color: #fff;
-      transform: rotate(45deg);
-    }
+    .accord-item.open .accord-icon { background: var(--brand); color: #fff; transform: rotate(45deg); }
     .accord-body {
       max-height: 0; overflow: hidden;
       transition: max-height .35s ease, padding .35s ease;
-      padding: 0 0 0;
+      padding: 0;
     }
-    .accord-item.open .accord-body {
-      max-height: 300px;
-      padding: 0 0 20px;
-    }
-    .accord-body p {
-      font-size: 14px; color: var(--ink-2); line-height: 1.8;
-    }
+    .accord-item.open .accord-body { max-height: 300px; padding: 0 16px 20px; }
+    .accord-body p { font-size: 14px; color: var(--ink-2); line-height: 1.8; margin: 0; }
 
     /* Schedule + CTA at bottom of left */
     .guide-left-footer { margin-top: 32px; }
@@ -641,130 +655,113 @@
       background: var(--brand); color: #fff;
       font-weight: 700; font-size: 15px;
       padding: 14px 32px; border-radius: 100px;
-      text-decoration: none;
-      transition: background .2s, transform .2s;
+      text-decoration: none; transition: background .2s, transform .2s;
     }
     .guide-neo-cta:hover { background: var(--brand-dark); transform: translateY(-1px); }
 
-    /* Right: sticky photo */
-    .guide-right {
-      flex: 0 0 58%;
-      position: sticky; top: 80px;
-      padding-top: 48px;
-    }
+    /* Right: sticky video */
+    .guide-right { flex: 0 0 58%; position: sticky; top: 80px; padding-top: 48px; }
     .guide-right-photo {
       width: 100%; border-radius: var(--r-lg);
-      overflow: hidden;
-      background: var(--brand-light);
-      aspect-ratio: 4/3;
-      box-shadow: 0 16px 56px rgba(123,34,82,.15);
+      overflow: hidden; background: var(--brand-light);
+      aspect-ratio: 4/3; box-shadow: 0 16px 56px rgba(123,34,82,.15);
     }
     .guide-right-photo img {
       width: 100%; height: 100%;
-      object-fit: cover; object-position: center 15%;
-      display: block;
+      object-fit: cover; object-position: center 15%; display: block;
+    }
+    a.guide-right-video {
+      display: block; position: relative;
+      text-decoration: none; cursor: pointer;
+      aspect-ratio: 16 / 9; background: #000;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    a.guide-right-video img { object-position: center; transition: filter .25s ease; }
+    a.guide-right-video:hover { transform: translateY(-2px); box-shadow: 0 22px 64px rgba(123,34,82,.22); }
+    a.guide-right-video:hover img { filter: brightness(.9); }
+    .guide-right-play {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none;
+    }
+    .guide-right-play::before {
+      content: ''; position: absolute;
+      width: 76px; height: 76px; border-radius: 50%;
+      background: rgba(0,0,0,.55);
+      transition: transform .25s ease, background .25s ease;
+    }
+    a.guide-right-video:hover .guide-right-play::before { background: var(--brand); transform: scale(1.08); }
+    .guide-right-play svg {
+      position: relative; z-index: 1; color: #fff; margin-left: 4px;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,.4));
     }
     .guide-right-quote {
-      margin-top: 20px;
-      font-size: 14px; color: var(--ink-2); line-height: 1.8;
-      font-style: italic;
-      border-left: 3px solid var(--brand); padding-left: 16px;
+      margin-top: 20px; font-size: 14px; color: var(--ink-2); line-height: 1.8;
+      font-style: italic; border-left: 3px solid var(--brand); padding-left: 16px;
     }
-
-    /* ── GUIDE MOBILE (Neo style) ── */
     .guide-mobile-desc { display: none; }
 
     @media (max-width: 760px) {
-      .guide-tabs { margin: 28px 20px 0; }
+      .guide-tabs { margin: 28px auto 0; width: calc(100% - 40px); }
 
+      /* ── Single-column Apple Neo layout on mobile ── */
       .guide-panel-wrap {
-        flex-direction: column;
-        padding: 0 0 60px;
-        gap: 0;
+        flex-direction: column; align-items: center;
+        max-width: 100%; padding: 0 16px 60px;
+        box-sizing: border-box;
       }
 
-      /* Photo: full-bleed on top */
+      /* Video: full-width, on top */
       .guide-right {
-        order: -1;
-        position: static;
-        width: 100%;
-        padding: 0;
+        order: -1; position: static;
+        flex: none; width: 100%; max-width: 100%;
+        padding: 20px 0 0;
       }
-      .guide-right-photo {
-        border-radius: 0;
-        aspect-ratio: 4/3;
-        box-shadow: none;
-      }
+      a.guide-right-video { border-radius: 12px; overflow: hidden; }
+      .guide-right-photo { border-radius: 12px; box-shadow: none; }
       .guide-right-quote { display: none; }
 
-      /* Left: below photo */
-      .guide-left {
-        position: static;
-        padding: 24px 20px 0;
-        flex: none; width: 100%;
-      }
-      .guide-teacher-name-lg { font-size: 22px; }
-      .guide-teacher-badge { margin-bottom: 20px; }
+      /* Left: stacks below video */
+      .guide-left { position: static; flex: none; width: 100%; overflow: hidden; padding: 0; }
+      .guide-teacher-name-lg { font-size: 22px; text-align: center; padding-top: 20px; }
+      .guide-teacher-badge { display: block; width: fit-content; margin: 0 auto 16px; }
 
-      /* Accordion list → horizontal pill row */
+      /* Chips: horizontal pill row */
       .accord-list {
-        display: flex;
-        overflow-x: auto;
-        gap: 8px;
-        border-top: none;
-        scrollbar-width: none;
-        padding: 4px 0 12px;
-        margin: 0 -20px;
-        padding-left: 20px;
-        padding-right: 20px;
+        display: flex; overflow-x: auto; gap: 8px;
+        border-top: none; scrollbar-width: none;
+        padding: 4px 56px 12px 0; margin: 12px 0 0;
       }
       .accord-list::-webkit-scrollbar { display: none; }
-
-      .accord-item {
-        border-bottom: none;
-        flex-shrink: 0;
-      }
-
-      /* Pill trigger */
+      .accord-item { border-bottom: none; flex-shrink: 0; }
       .accord-trigger {
-        flex-direction: row;
-        background: #f0f0f0;
-        border-radius: 100px;
-        padding: 9px 16px;
-        gap: 7px;
-        width: auto;
-        white-space: nowrap;
+        flex-direction: row; background: #f0f0f0;
+        border-radius: 100px; padding: 9px 16px;
+        gap: 7px; width: auto; white-space: nowrap;
       }
       .accord-label { font-size: 13px; font-weight: 700; color: var(--ink-2); }
-      .accord-icon {
-        width: 22px; height: 22px; font-size: 14px;
-        background: rgba(0,0,0,.08);
-        order: -1;
-      }
-
-      /* Active pill */
+      .accord-icon { width: 22px; height: 22px; font-size: 14px; background: rgba(0,0,0,.08); order: -1; }
       .accord-item.open .accord-trigger { background: var(--brand); }
       .accord-item.open .accord-label { color: #fff; }
-      .accord-item.open .accord-icon {
-        background: rgba(255,255,255,.25);
-        color: #fff;
-        transform: rotate(45deg);
-      }
-
-      /* Hide inline bodies on mobile */
+      .accord-item.open .accord-icon { background: rgba(255,255,255,.25); color: #fff; transform: rotate(45deg); }
       .accord-body { display: none !important; }
 
-      /* Mobile description area */
+      /* Description card */
       .guide-mobile-desc {
         display: block;
-        min-height: 80px;
-        font-size: 14px; color: var(--ink-2); line-height: 1.8;
-        padding: 16px 4px 8px;
-        border-top: 1px solid rgba(0,0,0,.08);
-        margin-top: 12px;
+        background: #fff; border-radius: 16px;
+        padding: 16px 20px; margin: 12px 0 0;
+        box-shadow: 0 4px 20px rgba(123,34,82,.08);
+        min-height: 72px; font-size: 14px; color: var(--ink-2); line-height: 1.8;
+      }
+      .guide-mobile-desc strong {
+        display: block; font-size: 11px; font-weight: 700;
+        color: var(--brand); margin-bottom: 6px;
+        letter-spacing: .06em; text-transform: uppercase;
       }
 
-      .guide-left-footer { padding-top: 8px; }
+      .guide-left-footer { padding: 0; padding-top: 8px; text-align: center; }
+      .guide-dates { justify-content: center; }
     }
 
     /* ── PLAN ── */
@@ -844,49 +841,182 @@
 
     /* ── SIGNUP ── */
     .signup {
-      background: #fff;
-      padding: 100px 24px 120px;
+      background: #f5f5f7;
+      padding: 80px 48px;
     }
-    .signup-inner {
-      max-width: 680px;
+    .signup-wrap {
+      max-width: 1100px;
       margin: 0 auto;
-      text-align: center;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .signup-left {
+      display: flex; flex-direction: column;
+      padding: 8px 0;
+      position: sticky;
+      top: 100px;
     }
     .signup-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
+      display: inline-flex; align-items: center;
       font-size: 13px; font-weight: 700; letter-spacing: .08em;
       text-transform: uppercase; color: var(--brand);
-      background: rgba(123,34,82,.1);
-      padding: 6px 16px; border-radius: 100px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
     .signup-headline {
-      font-size: clamp(28px, 5vw, 44px);
+      font-size: clamp(32px, 4vw, 52px);
       font-weight: 900; color: var(--ink);
-      letter-spacing: -.02em;
-      margin-bottom: 12px;
+      letter-spacing: -.03em; line-height: 1.1;
+      margin-bottom: 16px;
     }
     .signup-sub {
       font-size: 15px; color: var(--ink-2); line-height: 1.7;
-      margin-bottom: 40px;
+      margin-bottom: 36px;
     }
-    .signup-form-wrap {
-      background: var(--brand-light);
-      border-radius: var(--r-lg);
-      padding: 8px;
-      min-height: 320px;
+    .signup-details {
+      display: flex; flex-direction: column; gap: 0;
+      border-top: 1px solid rgba(0,0,0,.1);
+      margin-bottom: 32px;
+    }
+    .signup-detail-row {
+      display: flex; align-items: flex-start;
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(0,0,0,.08);
+      font-size: 14px; line-height: 1.6;
+    }
+    .signup-detail-label {
+      color: var(--ink-3);
+      font-weight: 700;
+      min-width: 32px;
+      flex-shrink: 0;
+    }
+    .signup-detail-val {
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .signup-detail-free {
+      color: var(--brand);
+      font-weight: 900;
     }
     .signup-fallback {
-      margin-top: 16px;
       font-size: 13px;
       color: var(--ink-3);
     }
     .signup-fallback a {
-      color: var(--brand);
-      font-weight: 700;
-      text-decoration: none;
+      color: var(--brand); font-weight: 700; text-decoration: none;
     }
     .signup-fallback a:hover { text-decoration: underline; }
+
+    .signup-right { min-width: 0; }
+    .signup-form-card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 4px 40px rgba(0,0,0,.08);
+      padding: 32px 28px;
+      overflow: hidden;
+    }
+    .signup-form-card iframe {
+      display: block;
+    }
+
+    @media (max-width: 860px) {
+      .signup {
+        padding: 48px 0 64px;
+        background: #f5f5f7;
+      }
+      .signup-wrap {
+        grid-template-columns: 1fr;
+        gap: 0;
+        max-width: 100%;
+      }
+
+      /* ── 左欄：緊湊 header ── */
+      .signup-left {
+        position: static;
+        text-align: left;
+        align-items: flex-start;
+        padding: 0 20px 32px;
+      }
+      .signup-eyebrow {
+        font-size: 12px;
+        color: var(--brand);
+        margin-bottom: 8px;
+      }
+      .signup-headline {
+        font-size: 28px;
+        margin-bottom: 8px;
+      }
+      .signup-sub {
+        font-size: 14px;
+        margin-bottom: 20px;
+      }
+
+      /* Details：2欄 grid，緊湊小字 */
+      .signup-details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        border-top: 1px solid rgba(0,0,0,.1);
+        width: 100%;
+      }
+      .signup-detail-row {
+        flex-direction: column;
+        gap: 3px;
+        padding: 12px 0 12px;
+        border-bottom: 1px solid rgba(0,0,0,.07);
+        border-right: none;
+        font-size: 13px;
+      }
+      .signup-detail-row:nth-child(odd) {
+        padding-right: 24px;
+        border-right: 1px solid rgba(0,0,0,.07);
+      }
+      .signup-detail-row:nth-child(even) {
+        padding-left: 24px;
+      }
+      .signup-detail-label {
+        font-size: 11px;
+        letter-spacing: .04em;
+        min-width: unset;
+        margin-bottom: 2px;
+      }
+      .signup-detail-val {
+        font-size: 13px;
+        line-height: 1.4;
+      }
+      .signup-fallback {
+        margin-top: 20px;
+        font-size: 12px;
+        text-align: left;
+      }
+
+      /* ── 右欄：表單卡片全寬，Neo 風格 ── */
+      .signup-right {
+        background: #fff;
+        border-radius: 20px 20px 0 0;
+        padding: 0;
+        margin: 0 12px;
+        box-shadow: 0 -2px 24px rgba(0,0,0,.06);
+      }
+      .signup-form-card {
+        background: transparent;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 28px 20px 40px;
+      }
+      .signup-form-card::before {
+        content: '填寫報名資訊';
+        display: block;
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 20px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid rgba(0,0,0,.08);
+      }
+    }
 
     .plan-step-body {
       display: flex; flex-direction: column; gap: 4px;
@@ -948,9 +1078,8 @@
   <!-- HERO -->
   <div class="hero-section-wrap">
   <section class="hero">
+    <div class="hero-inner">
 
-    <!-- 左：文字 -->
-    <div class="hero-left">
       <div class="hero-eyebrow">
         <div class="dot"></div>
         高一數學試聽・名額有限
@@ -961,75 +1090,36 @@
         <span class="hl">兩位頂尖數學名師</span>
       </h1>
 
-      <div class="hero-benefits">
-        <p class="hero-benefit">
-          <strong>免費試聽</strong>，開學前找到對的老師
-        </p>
-        <p class="hero-benefit">聽一堂 <span class="reward">☕ 大杯星巴克</span></p>
-        <p class="hero-benefit">兩堂拿 <span class="reward">💰 1,000元現金</span></p>
-      </div>
+      <p class="hero-benefit"><strong>免費試聽</strong>，開學前找到對的老師</p>
 
-      <!-- 手機版：照片插在這裡 -->
-      <div class="hero-teachers-mobile">
-        <div class="hero-teacher-card">
+      <!-- 兩位老師等重卡片 -->
+      <div class="hero-teachers">
+        <a class="hero-teacher-card" href="#guide" data-tab="jie" aria-label="了解解創智老師">
           <div class="hero-teacher-photo">
             <img src="teacher-jie.jpg" alt="解創智老師" />
           </div>
           <div class="hero-teacher-info">
-            <div class="hero-teacher-name">解創智老師</div>
             <div class="hero-teacher-tag">傳奇數學名師</div>
           </div>
-        </div>
-        <div class="hero-teacher-card">
+        </a>
+        <a class="hero-teacher-card" href="#guide" data-tab="chen" aria-label="了解陳建州老師">
           <div class="hero-teacher-photo">
             <img src="teacher-chen.jpg" alt="陳建州老師" />
           </div>
           <div class="hero-teacher-info">
-            <div class="hero-teacher-name">陳建州老師</div>
             <div class="hero-teacher-tag">數學鬼才</div>
           </div>
-        </div>
+        </a>
       </div>
 
       <div class="hero-ctas">
         <a href="#signup" class="btn-direct">立即填表報名</a>
         <a href="#schedule" class="btn-transition">查看更多</a>
       </div>
-    </div>
 
-    <!-- 右：老師照片（桌面版，主卡 + 可切換縮圖） -->
-    <div class="hero-right">
-      <div class="hero-teacher-card hero-main-card" id="heroMainCard">
-        <div class="hero-teacher-photo">
-          <img id="heroMainImg" src="teacher-jie.jpg" alt="解創智老師" />
-        </div>
-        <div class="hero-teacher-info">
-          <div class="hero-teacher-name" id="heroMainName">解創智老師</div>
-          <div class="hero-teacher-tag" id="heroMainTag">傳奇數學名師</div>
-        </div>
-      </div>
-      <div class="hero-teacher-thumbs">
-        <button type="button"
-                class="hero-teacher-thumb is-active"
-                data-img="teacher-jie.jpg"
-                data-name="解創智老師"
-                data-tag="傳奇數學名師"
-                aria-label="切換主顯示為解創智老師">
-          <img src="teacher-jie.jpg" alt="解創智老師" />
-          <span>解創智</span>
-        </button>
-        <button type="button"
-                class="hero-teacher-thumb"
-                data-img="teacher-chen.jpg"
-                data-name="陳建州老師"
-                data-tag="數學鬼才"
-                aria-label="切換主顯示為陳建州老師">
-          <img src="teacher-chen.jpg" alt="陳建州老師" />
-          <span>陳建州</span>
-        </button>
-      </div>
-    </div>
+      <p class="hero-rewards">聽一堂 ☕ 大杯星巴克・兩堂拿 💰 1,000 元現金</p>
 
+    </div>
   </section>
   </div>
 
@@ -1037,9 +1127,9 @@
   <!-- STAKES -->
   <section class="stakes">
     <div class="stakes-inner">
-      <p class="stakes-eyebrow">國三升高一<span class="stakes-eyebrow-hl">如果沒銜接</span></p>
+      <p class="stakes-eyebrow">國三升高一<span class="stakes-eyebrow-hl">準備不足的學生</span></p>
       <h2 class="stakes-headline">第一次段考<br>從 <span class="stakes-num">A++</span> 摔到 <span class="stakes-fall">40 分</span></h2>
-      <p class="stakes-sub">不是孩子變差，<br>問題只出在這兩件事</p>
+      <p class="stakes-sub">不是學生程度變差，<br>問題只出在這兩件事</p>
       <div class="stakes-sub-arrow" aria-hidden="true">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
@@ -1055,7 +1145,7 @@
             </svg>
           </div>
           <h3 class="stakes-card-title">難度三級跳</h3>
-          <p class="stakes-card-desc">沒銜接的孩子<br>第一週就跟不上節奏</p>
+          <p class="stakes-card-desc">準備不足的學生<br>第一週就跟不上節奏</p>
         </div>
 
         <div class="stakes-card">
@@ -1066,13 +1156,13 @@
             </svg>
           </div>
           <h3 class="stakes-card-title">遊戲規則不同</h3>
-          <p class="stakes-card-desc">國中可以靠背公式<br>高中開始<br>考「思考」和「邏輯」</p>
+          <p class="stakes-card-desc">國中靠背公式<br>高中考思考和邏輯</p>
         </div>
 
 
       </div>
 
-      <p class="stakes-conclusion">銜接課程紮實補強兩大能力，<br><strong>A++ 無縫接軌數學 15 級分。</strong></p>
+      <p class="stakes-conclusion">暑假紮實補強兩大能力，<br><strong>A++ 無縫接軌數學 15 級分。</strong></p>
     </div>
   </section>
 
@@ -1080,8 +1170,8 @@
   <section class="value">
     <div class="value-inner">
       <p class="value-eyebrow">想像開學第一堂數學課</p>
-      <h2 class="value-headline">老師出第一題。<br>你已經看過這種題了。</h2>
-      <p class="value-sub">隔壁同學還在猜這在考什麼——你已經準備好動筆了。<br>差別就是這個暑假。</p>
+      <h2 class="value-headline">熟悉的概念<br>躍然紙上</h2>
+      <p class="value-sub"><span class="nobreak">隔壁同學還在一頭霧水——</span><span class="nobreak">你已經準備好動筆了。</span><br><span class="nobreak">差別就在這個暑假。</span></p>
 
       <div class="value-cards">
 
@@ -1094,7 +1184,7 @@
             </svg>
           </div>
           <h3 class="value-card-title">開學前就找到對的老師</h3>
-          <p class="value-card-desc">不用等段考掉分才知道要換。這堂試聽讓家長親眼看見老師的教學，安心再決定。</p>
+          <p class="value-card-desc">在開學前先親眼看見老師的教學，提早確認哪位老師最對。<br>安心做選擇，從第一堂就走對方向。</p>
           <span class="value-card-tag">省下整學期試錯</span>
         </div>
 
@@ -1107,9 +1197,9 @@
               <circle cx="16" cy="17" r="2" fill="white"/>
             </svg>
           </div>
-          <h3 class="value-card-title">免費去、不綁定、還有現金拿</h3>
-          <p class="value-card-desc">聽一堂拿星巴克，兩堂拿 1,000 元現金。全程免費，試完喜歡再說，沒人逼你報名。</p>
-          <span class="value-card-tag">零壓力・零風險</span>
+          <h3 class="value-card-title">免費試聽，還有獎勵可拿</h3>
+          <p class="value-card-desc">聽一堂拿星巴克，兩堂拿 1,000 元現金。<br>全程免費，聽完喜歡馬上報名。</p>
+          <span class="value-card-tag">無負擔・有獎勵</span>
         </div>
 
         <!-- 向上：先修、領先、安全感 -->
@@ -1121,7 +1211,7 @@
             </svg>
           </div>
           <h3 class="value-card-title">先修一步，高中起跑就領先</h3>
-          <p class="value-card-desc">提前摸清高中數學的思維邏輯，開學就比同學快一步。要衝數理資優班的，更不能錯過。</p>
+          <p class="value-card-desc">提前摸清高中數學的思維邏輯，開學就比同學快一步。<br>想衝數理資優班的學生，更適合先來體驗。</p>
           <span class="value-card-tag">競爭優勢</span>
         </div>
 
@@ -1136,7 +1226,7 @@
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="11" stroke="white" stroke-width="2.2"/><polyline points="16,9 16,16 21,19" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             <h3 class="value-card-title">那種陌生感，別人有，你沒有</h3>
-            <p class="value-card-desc">高中數學的思維方式，你這個暑假已經遇過一次了。開學坐進教室，你不是第一次面對它。</p>
+            <p class="value-card-desc">高中數學的思維方式，你這個暑假已經遇過一次了。<br>開學坐進教室，你不是第一次面對它。</p>
             <span class="value-card-tag">領先同學一步</span>
           </div>
 
@@ -1144,9 +1234,9 @@
             <div class="value-icon">
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="6" y="10" width="20" height="14" rx="3" stroke="white" stroke-width="2.2"/><path d="M11 10V8a5 5 0 0 1 10 0v2" stroke="white" stroke-width="2.2" stroke-linecap="round"/><circle cx="16" cy="17" r="2" fill="white"/></svg>
             </div>
-            <h3 class="value-card-title">免費去、不綁定、還有現金拿</h3>
-            <p class="value-card-desc">聽一堂拿星巴克，兩堂拿 1,000 元現金。全程免費，試完喜歡再說，沒人逼你報名。</p>
-            <span class="value-card-tag">零壓力・零風險</span>
+            <h3 class="value-card-title">免費試聽，還有獎勵可拿</h3>
+            <p class="value-card-desc">聽一堂拿星巴克，兩堂拿 1,000 元現金。<br>全程免費，聽完喜歡馬上報名。</p>
+            <span class="value-card-tag">無負擔・有獎勵</span>
           </div>
 
           <div class="value-card">
@@ -1154,7 +1244,7 @@
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><polyline points="6,24 13,14 19,19 26,8" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="21,8 26,8 26,13" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             <h3 class="value-card-title">先修一步，高中起跑就領先</h3>
-            <p class="value-card-desc">提前摸清高中數學的思維邏輯，開學就比同學快一步。要衝數理資優班的，更不能錯過。</p>
+            <p class="value-card-desc">提前摸清高中數學的思維邏輯，開學就比同學快一步。<br>想衝數理資優班的學生，更適合先來體驗。</p>
             <span class="value-card-tag">競爭優勢</span>
           </div>
 
@@ -1183,13 +1273,13 @@
   </section>
 
   <!-- GUIDE -->
-  <section class="guide">
+  <section class="guide" id="guide">
 
     <!-- Header -->
     <div class="guide-header">
       <p class="guide-eyebrow">你不是第一個這樣想的</p>
-      <h2 class="guide-headline">找到一個真正讓你<br>想聽課的老師，很難</h2>
-      <p class="guide-sub">我們知道。所以讓你先聽，再決定。試聽這兩位——很多學生說，遇到他們之前，以為自己不是數學的人。</p>
+      <h2 class="guide-headline">找到一個真正讓你想聽課的老師<br>很重要</h2>
+      <p class="guide-sub">所以我們讓你先聽，再決定。</p>
     </div>
 
     <!-- Teacher tabs -->
@@ -1207,6 +1297,7 @@
           <div class="guide-teacher-name-lg">解創智老師</div>
           <div class="guide-teacher-badge">30 年數學名師</div>
 
+          <div class="accord-list-wrap">
           <div class="accord-list">
 
             <div class="accord-item open">
@@ -1260,6 +1351,7 @@
             </div>
 
           </div>
+          </div><!-- /.accord-list-wrap -->
 
           <!-- Mobile: description shown here when pill is tapped -->
           <div class="guide-mobile-desc"></div>
@@ -1272,16 +1364,24 @@
               <span class="guide-date">6/10 午</span>
               <span class="guide-date">6/19 午</span>
             </div>
-            <a href="#signup" class="guide-neo-cta">免費報名解老師試聽</a>
+            <a href="#signup" class="guide-neo-cta">免費報名試聽</a>
           </div>
         </div>
 
-        <!-- Right: sticky photo -->
+        <!-- Right: YouTube 影片縮圖 -->
         <div class="guide-right">
-          <div class="guide-right-photo">
-            <img src="teacher-jie.jpg" alt="解創智老師" />
-          </div>
-          <p class="guide-right-quote">「解老師把我國中學的東西全部打掉重練。我才發現原來我根本不懂那些公式——懂了之後，最難的題目反而變簡單了。」<br>— 學生回饋</p>
+          <a class="guide-right-photo guide-right-video"
+             href="https://www.youtube.com/watch?v=2MDNehWOWjc"
+             target="_blank" rel="noopener"
+             aria-label="觀看解創智老師介紹影片">
+            <img src="https://img.youtube.com/vi/2MDNehWOWjc/maxresdefault.jpg"
+                 onerror="this.onerror=null;this.src='https://img.youtube.com/vi/2MDNehWOWjc/hqdefault.jpg';"
+                 alt="解創智老師介紹影片縮圖" />
+            <span class="guide-right-play" aria-hidden="true">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </span>
+          </a>
+          <p class="guide-right-quote">「解老師把我國中學的東西全部打掉重練。我才發現原來我根本不懂那些公式——懂了之後，最難的題目反而變簡單了。」<br>— 陽明醫科同學</p>
         </div>
 
       </div>
@@ -1296,6 +1396,7 @@
           <div class="guide-teacher-name-lg">陳建州老師</div>
           <div class="guide-teacher-badge">數學鬼才</div>
 
+          <div class="accord-list-wrap">
           <div class="accord-list">
 
             <div class="accord-item open">
@@ -1339,6 +1440,7 @@
             </div>
 
           </div>
+          </div><!-- /.accord-list-wrap -->
 
           <div class="guide-mobile-desc"></div>
 
@@ -1349,16 +1451,24 @@
               <span class="guide-date">6/10 下午</span>
               <span class="guide-date">6/13 下午</span>
             </div>
-            <a href="#signup" class="guide-neo-cta">免費報名建州老師試聽</a>
+            <a href="#signup" class="guide-neo-cta">免費報名試聽</a>
           </div>
         </div>
 
-        <!-- Right: sticky photo -->
+        <!-- Right: YouTube 影片縮圖 -->
         <div class="guide-right">
-          <div class="guide-right-photo">
-            <img src="teacher-chen.jpg" alt="陳建州老師" />
-          </div>
-          <p class="guide-right-quote">「他非常注重每一個公式的推導，提供很多不同的解法，讓我們可以用不同的思維方向去思考——打開了我對數學的解跟數學維度的認識。」<br>— 學生回饋</p>
+          <a class="guide-right-photo guide-right-video"
+             href="https://www.youtube.com/watch?v=tdT3xcECfp4"
+             target="_blank" rel="noopener"
+             aria-label="觀看陳建州老師介紹影片">
+            <img src="https://img.youtube.com/vi/tdT3xcECfp4/maxresdefault.jpg"
+                 onerror="this.onerror=null;this.src='https://img.youtube.com/vi/tdT3xcECfp4/hqdefault.jpg';"
+                 alt="陳建州老師介紹影片縮圖" />
+            <span class="guide-right-play" aria-hidden="true">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </span>
+          </a>
+          <p class="guide-right-quote">「他非常注重每一個公式的推導，提供很多不同的解法，讓我們可以用不同的思維方向去思考——打開了我對數學的解跟數學維度的認識。」<br>— 陽明醫科同學</p>
         </div>
 
       </div>
@@ -1444,58 +1554,72 @@
 
   <!-- SIGNUP / FORM -->
   <section class="signup" id="signup">
-    <div class="signup-inner">
-      <p class="signup-eyebrow">免費報名</p>
-      <h2 class="signup-headline">立即確認你的試聽席次</h2>
-      <p class="signup-sub">名額有限，填表後我們將透過 LINE@ 確認報名資訊</p>
+    <div class="signup-wrap">
 
-      <div class="signup-form-wrap">
-        <div data-tally-src="https://tally.so/r/Y5pyX6"
-             data-tally-layout="inline"
-             data-tally-transparent-background="1"
-             data-tally-width="100%">
+      <!-- 左：資訊面板 -->
+      <div class="signup-left">
+        <p class="signup-eyebrow">免費試聽</p>
+        <h2 class="signup-headline">立即確認<br>你的席次</h2>
+        <p class="signup-sub">名額有限，填表後透過 LINE@ 確認報名資訊</p>
+
+        <div class="signup-details">
+          <div class="signup-detail-row">
+            <span class="signup-detail-label">老師</span>
+            <span class="signup-detail-val">解創智・陳建州</span>
+          </div>
+          <div class="signup-detail-row">
+            <span class="signup-detail-label">對象</span>
+            <span class="signup-detail-val">國三升高一</span>
+          </div>
+          <div class="signup-detail-row">
+            <span class="signup-detail-label">費用</span>
+            <span class="signup-detail-val signup-detail-free">完全免費</span>
+          </div>
+          <div class="signup-detail-row">
+            <span class="signup-detail-label">禮物</span>
+            <span class="signup-detail-val">聽一堂 ☕ 星巴克・兩堂 💰 千元現金</span>
+          </div>
         </div>
-        <script async src="https://tally.so/widgets/embed.js"></script>
+
+        <p class="signup-fallback">
+          表單無法顯示？<a href="https://tally.so/r/Y5pyX6" target="_blank" rel="noopener">點此直接填表 →</a>
+        </p>
       </div>
 
-      <p class="signup-fallback">
-        表單無法顯示？<a href="https://tally.so/r/Y5pyX6" target="_blank" rel="noopener">點此直接填表 →</a>
-      </p>
+      <!-- 右：表單 -->
+      <div class="signup-right">
+        <div class="signup-form-card">
+          <iframe
+            src="https://tally.so/embed/Y5pyX6?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+            loading="lazy"
+            width="100%"
+            height="560"
+            frameborder="0"
+            marginheight="0"
+            marginwidth="0"
+            title="高一數學試聽報名表">
+          </iframe>
+        </div>
+      </div>
+
     </div>
   </section>
 
 
-  <!-- Thumbnail switcher -->
+  <!-- Hero teacher card → guide tab -->
   <script>
-    (function () {
-      const mainImg = document.getElementById('heroMainImg');
-      const mainName = document.getElementById('heroMainName');
-      const mainTag = document.getElementById('heroMainTag');
-      const mainCard = document.getElementById('heroMainCard');
-      const thumbs = document.querySelectorAll('.hero-teacher-thumb');
-      if (!mainImg || !thumbs.length) return;
-
-      thumbs.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          if (btn.classList.contains('is-active')) return;
-          thumbs.forEach(function (b) { b.classList.remove('is-active'); });
-          btn.classList.add('is-active');
-          const nextSrc = btn.dataset.img;
-          const nextName = btn.dataset.name || '';
-          const nextTag = btn.dataset.tag || '';
-          mainCard.classList.add('is-swapping');
-          setTimeout(function () {
-            mainImg.src = nextSrc;
-            mainImg.alt = nextName;
-            if (mainName) mainName.textContent = nextName;
-            if (mainTag) mainTag.textContent = nextTag;
-            requestAnimationFrame(function () {
-              mainCard.classList.remove('is-swapping');
-            });
-          }, 180);
-        });
+    document.querySelectorAll('.hero-teacher-card[data-tab]').forEach(function(card) {
+      card.addEventListener('click', function(e) {
+        var tab = card.dataset.tab;
+        // Activate the matching guide tab
+        document.querySelectorAll('.guide-tab').forEach(function(t) { t.classList.remove('active'); });
+        document.querySelectorAll('.guide-panel').forEach(function(p) { p.classList.remove('active'); });
+        var matchTab = document.querySelector('.guide-tab[data-panel="' + tab + '"]');
+        var matchPanel = document.getElementById('panel-' + tab);
+        if (matchTab) matchTab.classList.add('active');
+        if (matchPanel) matchPanel.classList.add('active');
       });
-    })();
+    });
   </script>
 
   <!-- Carousel / accordion -->
@@ -1521,26 +1645,31 @@
         // Open clicked if it was closed
         if (!isOpen) {
           item.classList.add('open');
-          // Update mobile description area
           const mobileDesc = item.closest('.guide-left').querySelector('.guide-mobile-desc');
           if (mobileDesc) {
+            const label = item.querySelector('.accord-label');
             const bodyText = item.querySelector('.accord-body p');
-            mobileDesc.textContent = bodyText ? bodyText.textContent : '';
+            mobileDesc.innerHTML =
+              (label ? '<strong>' + label.textContent + '</strong>' : '') +
+              (bodyText ? bodyText.textContent : '');
           }
         } else {
           const mobileDesc = item.closest('.guide-left').querySelector('.guide-mobile-desc');
-          if (mobileDesc) mobileDesc.textContent = '';
+          if (mobileDesc) mobileDesc.innerHTML = '';
         }
       });
     });
 
-    // Init mobile desc with first open item
+    // Init description card with first open chip
     document.querySelectorAll('.guide-left').forEach(left => {
       const openItem = left.querySelector('.accord-item.open');
       const mobileDesc = left.querySelector('.guide-mobile-desc');
       if (openItem && mobileDesc) {
+        const label = openItem.querySelector('.accord-label');
         const bodyText = openItem.querySelector('.accord-body p');
-        mobileDesc.textContent = bodyText ? bodyText.textContent : '';
+        mobileDesc.innerHTML =
+          (label ? '<strong>' + label.textContent + '</strong>' : '') +
+          (bodyText ? bodyText.textContent : '');
       }
     });
 
@@ -1567,7 +1696,7 @@
 
       function startAuto() {
         clearInterval(timer);
-        timer = setInterval(() => { if (autoplay) goTo(current + 1); }, 3200);
+        timer = setInterval(() => { if (autoplay) goTo(current + 1); }, 7000);
       }
 
       // Dot clicks
