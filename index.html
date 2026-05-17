@@ -4,6 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>高一數學試聽｜得勝者文教</title>
+  <!-- ── Open Graph / 社群分享預覽 ── -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="得勝者文教" />
+  <meta property="og:url" content="https://trial-landing.vercel.app/" />
+  <meta property="og:title" content="高一數學試聽｜一次試聽兩位頂尖數學名師" />
+  <meta property="og:description" content="解創智老師 × 陳建州老師。免費試聽，開學前找到對的老師。聽一堂大杯星巴克・兩堂拿 1,000 元現金。" />
+  <meta property="og:locale" content="zh_TW" />
+
+  <!-- 多張 og:image：FB 會把兩張都列為可切換選項 -->
+  <meta property="og:image" content="https://trial-landing.vercel.app/teacher-jie.jpg" />
+  <meta property="og:image:alt" content="解創智老師 — 傳奇數學名師" />
+
+  <meta property="og:image" content="https://trial-landing.vercel.app/teacher-chen.jpg" />
+  <meta property="og:image:alt" content="陳建州老師 — 數學鬼才" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="高一數學試聽｜一次試聽兩位頂尖數學名師" />
+  <meta name="twitter:description" content="解創智老師 × 陳建州老師。免費試聽，開學前找到對的老師。" />
+  <meta name="twitter:image" content="https://trial-landing.vercel.app/teacher-jie.jpg" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
@@ -78,9 +98,9 @@
     /* ── HERO ── */
     .hero-section-wrap {
       background:
-        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(123,34,82,.55) 0%, transparent 65%),
-        radial-gradient(ellipse 50% 40% at 20% 80%, rgba(74,17,51,.5) 0%, transparent 55%),
-        radial-gradient(ellipse 40% 35% at 80% 10%, rgba(201,168,76,.18) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 55% at 10% 30%, rgba(123,34,82,.7) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 45% at 90% 70%, rgba(74,17,51,.6) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 35% at 55% 5%, rgba(201,168,76,.25) 0%, transparent 50%),
         #0f0509;
       overflow: hidden;
     }
@@ -90,73 +110,160 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 120px 48px 100px;
-      text-align: center;
+      gap: 0;
+      padding: 110px 32px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: none;
     }
-    .hero-inner {
-      max-width: 860px;
+    .hero-left {
+      display: flex; flex-direction: column;
+      align-items: center;
+      text-align: center;
       width: 100%;
+      gap: 0;
+    }
+    .hero-right { display: none; }
+
+    /* 老師照片卡 —— 桌面並排、手機直排 */
+    .hero-teachers {
+      display: flex;
+      flex-direction: row;
+      gap: 24px;
+      width: 100%;
+      max-width: 1100px;
+      margin: 36px 0 36px;
+    }
+    .hero-teacher-card {
+      position: relative;
+      flex: 1 1 0;
+      min-width: 0;
+      width: auto;
+      height: 0;
+      padding-top: 28.125%; /* 56.25% / 2 cards = 16:9 per card when flex row */
+      border-radius: 22px;
+      overflow: hidden;
+      background: var(--brand-dark);
+      box-shadow: 0 8px 32px rgba(0,0,0,.4);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .hero-teacher-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 38px rgba(0,0,0,.45);
+    }
+    .hero-teacher-card .hero-teacher-photo {
+      position: absolute; inset: 0;
+      background: var(--brand-dark);
+    }
+    .hero-teacher-card .hero-teacher-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      display: block;
+      /* 圖片載失敗時不顯示 alt 文字（保持卡片視覺乾淨） */
+      color: transparent;
+      font-size: 0;
+    }
+    .hero-teacher-card .hero-teacher-info {
+      position: absolute;
+      left: 18px; bottom: 14px;
+      z-index: 2;
+    }
+    .hero-teacher-card .hero-teacher-tag {
+      font-size: 13px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: .04em;
+      text-shadow: 0 2px 8px rgba(0,0,0,.4);
+    }
+    .hero-teacher-card .hero-teacher-name {
+      display: none;
+    }
+    .hero-reward-combo {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,.1);
+      width: 100%;
+      max-width: 560px;
+      text-align: center;
+      color: rgba(255,255,255,.78);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .hero-reward-combo .reward {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: rgba(201,168,76,.15);
+      border: 1.5px solid rgba(201,168,76,.5);
+      color: var(--gold);
+      font-weight: 700; font-size: 14px;
+      padding: 3px 12px; border-radius: 100px;
+    }
+
+    /* 防止橫向溢出 */
+    html, body { overflow-x: hidden; max-width: 100vw; }
+    .hero-right .hero-main-card {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      box-shadow: 12px 18px 44px rgba(0,0,0,.4);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .hero-right .hero-main-card .hero-teacher-photo img {
+      transition: opacity .3s ease;
+    }
+    .hero-right .hero-main-card.is-swapping .hero-teacher-photo img {
+      opacity: 0;
+    }
+    .hero-teacher-thumbs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .hero-teacher-thumb {
+      background: rgba(255,255,255,.05);
+      border: 2px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      padding: 8px 8px 10px;
+      cursor: pointer;
+      transition: all .2s ease;
       display: flex;
       flex-direction: column;
       align-items: center;
+      gap: 6px;
+      font-family: inherit;
     }
-
-    /* Two equal teacher cards */
-    .hero-teachers {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
+    .hero-teacher-thumb img {
       width: 100%;
-      max-width: 760px;
-      margin: 40px 0 44px;
-    }
-    .hero-teacher-card {
-      border-radius: 20px;
-      overflow: hidden;
-      position: relative;
-      aspect-ratio: 16/9;
-      background: var(--brand-light);
-      box-shadow: 0 16px 48px rgba(0,0,0,.45);
-    }
-    .hero-teacher-photo {
-      width: 100%; height: 100%;
-    }
-    .hero-teacher-photo img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center center;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      object-position: center 20%;
+      border-radius: 8px;
       display: block;
     }
-    .hero-teacher-info {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 32px 14px 12px;
-      background: linear-gradient(to top, rgba(0,0,0,.6) 0%, transparent 100%);
-      text-align: left;
+    .hero-teacher-thumb span {
+      color: rgba(255,255,255,.7);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .04em;
     }
-    .hero-teacher-name { display: none; }
-    .hero-teacher-tag {
-      font-size: 12px; font-weight: 700;
-      color: var(--gold);
-      letter-spacing: .06em;
+    .hero-teacher-thumb:hover {
+      border-color: rgba(201,168,76,.55);
+      transform: translateY(-1px);
     }
-
-    /* 老師卡可點擊 */
-    a.hero-teacher-card {
-      display: block;
-      text-decoration: none;
-      cursor: pointer;
-      transition: transform .25s ease, box-shadow .25s ease;
+    .hero-teacher-thumb.is-active {
+      border-color: var(--gold);
+      background: rgba(201,168,76,.18);
+      box-shadow: 0 6px 18px rgba(201,168,76,.18);
     }
-    a.hero-teacher-card:hover {
-      transform: translateY(-4px) scale(1.01);
-      box-shadow: 0 24px 56px rgba(0,0,0,.55);
+    .hero-teacher-thumb.is-active span {
+      color: #fff;
     }
-
-    /* Rewards line below CTAs */
-    .hero-rewards {
-      font-size: 13px;
-      color: rgba(255,255,255,.45);
-      margin-top: 18px;
-      letter-spacing: .02em;
+    /* 老師卡片底部加漸層遮罩，讓 tag 文字更清楚 */
+    .hero-teachers .hero-teacher-card::after {
+      content: "";
+      position: absolute; left: 0; right: 0; bottom: 0;
+      height: 50%;
+      background: linear-gradient(to top, rgba(0,0,0,.55) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 1;
     }
 
     .hero-eyebrow {
@@ -176,12 +283,12 @@
 
     /* 什麼 */
     .hero-headline {
-      font-size: clamp(36px, 6vw, 68px);
+      font-size: clamp(36px, 6vw, 64px);
       font-weight: 900;
-      line-height: 1.12;
+      line-height: 1.15;
       color: #fff;
-      margin-bottom: 20px;
-      letter-spacing: -.02em;
+      margin-bottom: 24px;
+      letter-spacing: -.01em;
     }
     .hero-headline .hl {
       color: var(--gold);
@@ -189,12 +296,25 @@
     }
 
     /* 更好 */
+    .hero-benefits {
+      display: flex; flex-direction: column; gap: 10px;
+      margin-bottom: 44px;
+    }
     .hero-benefit {
       font-size: clamp(15px, 2vw, 18px);
       color: rgba(255,255,255,.7);
       line-height: 1.6;
     }
     .hero-benefit strong { color: #fff; font-weight: 700; }
+    .hero-benefit .reward {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(201,168,76,.15);
+      border: 1.5px solid rgba(201,168,76,.5);
+      color: var(--gold);
+      font-weight: 700; font-size: 14px;
+      padding: 3px 12px; border-radius: 100px;
+      margin-left: 6px;
+    }
 
     /* CTAs */
     .hero-ctas {
@@ -207,23 +327,20 @@
       color: #fff; font-weight: 700; font-size: 16px;
       padding: 16px 36px; border-radius: 100px;
       text-decoration: none;
-      box-shadow: 0 8px 24px rgba(123,34,82,.4);
+      box-shadow: 0 8px 24px rgba(123,34,82,.3);
       transition: transform .2s, box-shadow .2s;
     }
-    .btn-direct:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(123,34,82,.5); }
-    /* 過渡的行動召喚 — white outline on dark bg */
+    .btn-direct:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(123,34,82,.4); }
+    /* 過渡的行動召喚 */
     .btn-transition {
       background: transparent;
-      color: #fff; font-weight: 700; font-size: 16px;
+      color: var(--brand); font-weight: 700; font-size: 16px;
       padding: 16px 36px; border-radius: 100px;
-      border: 2px solid rgba(255,255,255,.4);
+      border: 2px solid var(--brand);
       text-decoration: none;
-      transition: background .2s, border-color .2s;
+      transition: background .2s, color .2s;
     }
-    .btn-transition:hover {
-      background: rgba(255,255,255,.1);
-      border-color: rgba(255,255,255,.65);
-    }
+    .btn-transition:hover { background: var(--brand-light); }
 
     /* ── STAKES ── */
     .stakes {
@@ -313,32 +430,40 @@
     .stakes-conclusion strong { color: #fff; }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 600px) {
-      nav { padding: 14px 20px; }
+    @media (max-width: 860px) {
       .hero {
-        padding: 100px 16px 64px;
+        padding: 100px 16px 60px;
+        max-width: 720px;
       }
       .hero-teachers {
+        flex-direction: column;
+        gap: 12px;
+        margin: 22px 0 22px;
         max-width: 100%;
-        gap: 10px;
-        margin: 28px 0 32px;
-        /* Stack vertically on small screens */
-        grid-template-columns: 1fr;
       }
       .hero-teacher-card {
-        aspect-ratio: 16/9;
+        flex: 1 1 100%;
+        width: 100%;
+        padding-top: 56.25%; /* 16:9 when card is full width */
+        border-radius: 18px;
       }
       .hero-ctas {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 10px;
-        width: 100%;
+        width: 100%; max-width: 360px;
       }
       .btn-direct, .btn-transition {
         text-align: center;
-        padding: 14px 10px;
+        padding: 14px 12px;
         font-size: 14px;
       }
+      .hero-reward-combo {
+        font-size: 14px;
+      }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 14px 20px; }
       .stakes-cards {
         grid-template-columns: 1fr 1fr;
         max-width: 100%;
@@ -497,7 +622,6 @@
       border-top: 1px solid rgba(123,34,82,.12);
       box-shadow: inset 0 8px 24px -16px rgba(123,34,82,.18);
       position: relative;
-      overflow-x: hidden;
     }
     .guide::before {
       content: '';
@@ -525,32 +649,6 @@
     .guide-sub {
       font-size: 16px; color: var(--ink-2);
       line-height: 1.8;
-      margin-bottom: 40px;
-    }
-    .guide-quote {
-      position: relative;
-      background: #fff;
-      border-radius: 16px;
-      padding: 32px 36px 28px;
-      margin: 0 auto;
-      max-width: 520px;
-      text-align: center;
-      box-shadow: 0 4px 24px rgba(123,34,82,.08);
-    }
-    .guide-quote::before {
-      content: '\201C';
-      position: absolute;
-      top: -18px; left: 50%;
-      transform: translateX(-50%);
-      font-size: 72px; line-height: 1;
-      color: var(--brand);
-      font-family: Georgia, serif;
-    }
-    .guide-quote-label { display: none; }
-    .guide-quote-text {
-      font-size: 16px; color: var(--ink);
-      line-height: 1.9;
-      font-style: italic;
     }
 
     /* Teacher tab switcher */
@@ -572,7 +670,7 @@
       box-shadow: 0 2px 8px rgba(0,0,0,.1);
     }
 
-    /* Panel: two-column desktop layout */
+    /* Panel: two-column Apple layout */
     .guide-panel { display: none; }
     .guide-panel.active { display: flex; }
     .guide-panel-wrap {
@@ -601,13 +699,6 @@
     }
 
     /* Accordion items */
-    .accord-list-wrap { position: relative; }
-    .accord-list-wrap::after {
-      content: ''; position: absolute;
-      top: 0; right: 0; bottom: 0; width: 56px;
-      background: linear-gradient(to left, #f8f4f6 10%, transparent 100%);
-      pointer-events: none;
-    }
     .accord-list { border-top: 1px solid rgba(0,0,0,.1); }
     .accord-item { border-bottom: 1px solid rgba(0,0,0,.1); }
     .accord-trigger {
@@ -615,7 +706,8 @@
       justify-content: space-between;
       padding: 18px 0;
       background: none; border: none; cursor: pointer;
-      text-align: left; gap: 12px;
+      text-align: left;
+      gap: 12px;
     }
     .accord-trigger:hover .accord-label { color: var(--brand); }
     .accord-label {
@@ -629,14 +721,22 @@
       font-size: 16px; font-weight: 400; color: var(--ink-2);
       transition: background .2s, transform .3s;
     }
-    .accord-item.open .accord-icon { background: var(--brand); color: #fff; transform: rotate(45deg); }
+    .accord-item.open .accord-icon {
+      background: var(--brand); color: #fff;
+      transform: rotate(45deg);
+    }
     .accord-body {
       max-height: 0; overflow: hidden;
       transition: max-height .35s ease, padding .35s ease;
-      padding: 0;
+      padding: 0 0 0;
     }
-    .accord-item.open .accord-body { max-height: 300px; padding: 0 16px 20px; }
-    .accord-body p { font-size: 14px; color: var(--ink-2); line-height: 1.8; margin: 0; }
+    .accord-item.open .accord-body {
+      max-height: 300px;
+      padding: 0 0 20px;
+    }
+    .accord-body p {
+      font-size: 14px; color: var(--ink-2); line-height: 1.8;
+    }
 
     /* Schedule + CTA at bottom of left */
     .guide-left-footer { margin-top: 32px; }
@@ -655,28 +755,49 @@
       background: var(--brand); color: #fff;
       font-weight: 700; font-size: 15px;
       padding: 14px 32px; border-radius: 100px;
-      text-decoration: none; transition: background .2s, transform .2s;
+      text-decoration: none;
+      transition: background .2s, transform .2s;
     }
     .guide-neo-cta:hover { background: var(--brand-dark); transform: translateY(-1px); }
 
-    /* Right: sticky video */
-    .guide-right { flex: 0 0 58%; position: sticky; top: 80px; padding-top: 48px; }
+    /* Right: sticky photo */
+    .guide-right {
+      flex: 0 0 58%;
+      position: sticky; top: 80px;
+      padding-top: 48px;
+    }
     .guide-right-photo {
       width: 100%; border-radius: var(--r-lg);
-      overflow: hidden; background: var(--brand-light);
-      aspect-ratio: 4/3; box-shadow: 0 16px 56px rgba(123,34,82,.15);
+      overflow: hidden;
+      background: var(--brand-light);
+      aspect-ratio: 4/3;
+      box-shadow: 0 16px 56px rgba(123,34,82,.15);
     }
     .guide-right-photo img {
       width: 100%; height: 100%;
-      object-fit: cover; object-position: center 15%; display: block;
+      object-fit: cover; object-position: center 15%;
+      display: block;
     }
     a.guide-right-video {
       display: block; position: relative;
       text-decoration: none; cursor: pointer;
-      aspect-ratio: 16 / 9; background: #000;
+      width: 100%;
+      height: 0;
+      padding-top: 56.25%; /* 16:9 ratio - bulletproof across browsers */
+      aspect-ratio: auto;  /* override .guide-right-photo's 4/3 */
+      background: #000;
       transition: transform .25s ease, box-shadow .25s ease;
     }
-    a.guide-right-video img { object-position: center; transition: filter .25s ease; }
+    a.guide-right-video img {
+      position: absolute !important;
+      top: 0; left: 0;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: filter .25s ease;
+    }
     a.guide-right-video:hover { transform: translateY(-2px); box-shadow: 0 22px 64px rgba(123,34,82,.22); }
     a.guide-right-video:hover img { filter: brightness(.9); }
     .guide-right-play {
@@ -690,78 +811,164 @@
       background: rgba(0,0,0,.55);
       transition: transform .25s ease, background .25s ease;
     }
-    a.guide-right-video:hover .guide-right-play::before { background: var(--brand); transform: scale(1.08); }
+    a.guide-right-video:hover .guide-right-play::before {
+      background: var(--brand);
+      transform: scale(1.08);
+    }
     .guide-right-play svg {
-      position: relative; z-index: 1; color: #fff; margin-left: 4px;
+      position: relative; z-index: 1;
+      color: #fff; margin-left: 4px;
       filter: drop-shadow(0 2px 6px rgba(0,0,0,.4));
     }
     .guide-right-quote {
-      margin-top: 20px; font-size: 14px; color: var(--ink-2); line-height: 1.8;
-      font-style: italic; border-left: 3px solid var(--brand); padding-left: 16px;
+      margin-top: 20px;
+      font-size: 14px; color: var(--ink-2); line-height: 1.8;
+      font-style: italic;
+      border-left: 3px solid var(--brand); padding-left: 16px;
     }
+
+    /* ── GUIDE MOBILE (Neo style) ── */
     .guide-mobile-desc { display: none; }
 
     @media (max-width: 760px) {
-      .guide-tabs { margin: 28px auto 0; width: calc(100% - 40px); }
+      /* 整體壓縮，讓第四頁盡量在一個視窗高度內呈現 */
+      .guide-header { padding: 56px 24px 0; }
+      .guide-tabs { margin: 20px 20px 0; }
 
-      /* ── Single-column Apple Neo layout on mobile ── */
       .guide-panel-wrap {
-        flex-direction: column; align-items: center;
-        max-width: 100%; padding: 0 16px 60px;
-        box-sizing: border-box;
+        flex-direction: column;
+        padding: 0 0 32px;
+        gap: 0;
       }
 
-      /* Video: full-width, on top */
+      /* Right: 影片框收邊不再 full-bleed，避免貼齊螢幕邊緣造成的衝突 */
       .guide-right {
-        order: -1; position: static;
-        flex: none; width: 100%; max-width: 100%;
-        padding: 20px 0 0;
+        order: -1;
+        position: static;
+        width: 100%;
+        padding: 12px 16px 0;
       }
-      a.guide-right-video { border-radius: 12px; overflow: hidden; }
-      .guide-right-photo { border-radius: 12px; box-shadow: none; }
+      .guide-right-photo {
+        border-radius: 14px;
+        aspect-ratio: 4/3;
+        box-shadow: 0 8px 24px rgba(123,34,82,.16);
+      }
+      /* 影片：用 padding-top 16:9 技巧（跨瀏覽器最穩定，避免 aspect-ratio 在 iOS 異常） */
+      a.guide-right-video {
+        width: 100%;
+        max-width: 100%;
+        height: 0;
+        padding-top: 56.25%;
+        aspect-ratio: auto;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 8px 24px rgba(0,0,0,.25);
+      }
+      /* 播放鈕在手機上縮一點 */
+      .guide-right-play::before { width: 56px; height: 56px; }
+      .guide-right-play svg { width: 26px; height: 26px; }
       .guide-right-quote { display: none; }
 
-      /* Left: stacks below video */
-      .guide-left { position: static; flex: none; width: 100%; overflow: hidden; padding: 0; }
-      .guide-teacher-name-lg { font-size: 22px; text-align: center; padding-top: 20px; }
-      .guide-teacher-badge { display: block; width: fit-content; margin: 0 auto 16px; }
+      /* Left: below photo，老師資訊置中 */
+      .guide-left {
+        position: static;
+        padding: 22px 20px 0;
+        flex: none; width: 100%;
+        text-align: center;
+      }
+      .guide-teacher-name-lg {
+        font-size: 22px;
+        margin: 0 auto 6px;
+        text-align: center;
+      }
+      .guide-teacher-badge {
+        margin: 0 auto 18px;
+        display: inline-block;
+      }
 
-      /* Chips: horizontal pill row */
+      /* Accordion list → horizontal pill row */
       .accord-list {
-        display: flex; overflow-x: auto; gap: 8px;
-        border-top: none; scrollbar-width: none;
-        padding: 4px 56px 12px 0; margin: 12px 0 0;
+        display: flex;
+        overflow-x: auto;
+        gap: 8px;
+        border-top: none;
+        scrollbar-width: none;
+        padding: 4px 0 14px;
+        margin: 0 -20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: left;
       }
       .accord-list::-webkit-scrollbar { display: none; }
-      .accord-item { border-bottom: none; flex-shrink: 0; }
-      .accord-trigger {
-        flex-direction: row; background: #f0f0f0;
-        border-radius: 100px; padding: 9px 16px;
-        gap: 7px; width: auto; white-space: nowrap;
+
+      .accord-item {
+        border-bottom: none;
+        flex-shrink: 0;
       }
-      .accord-label { font-size: 13px; font-weight: 700; color: var(--ink-2); }
-      .accord-icon { width: 22px; height: 22px; font-size: 14px; background: rgba(0,0,0,.08); order: -1; }
-      .accord-item.open .accord-trigger { background: var(--brand); }
+
+      /* Pill trigger */
+      .accord-trigger {
+        flex-direction: row;
+        background: #ececec;
+        border-radius: 100px;
+        padding: 9px 16px 9px 6px;
+        gap: 8px;
+        width: auto;
+        white-space: nowrap;
+      }
+      .accord-label { font-size: 13.5px; font-weight: 700; color: var(--ink-2); }
+      .accord-icon {
+        width: 24px; height: 24px; font-size: 14px;
+        background: rgba(0,0,0,.06);
+        order: -1;
+      }
+
+      /* Active pill */
+      .accord-item.open .accord-trigger {
+        background: var(--brand);
+        box-shadow: 0 4px 12px rgba(123,34,82,.25);
+      }
       .accord-item.open .accord-label { color: #fff; }
-      .accord-item.open .accord-icon { background: rgba(255,255,255,.25); color: #fff; transform: rotate(45deg); }
+      .accord-item.open .accord-icon {
+        background: rgba(255,255,255,.22);
+        color: #fff;
+        transform: rotate(45deg);
+      }
+
+      /* Hide inline bodies on mobile */
       .accord-body { display: none !important; }
 
-      /* Description card */
+      /* Mobile description card: title + body */
       .guide-mobile-desc {
         display: block;
-        background: #fff; border-radius: 16px;
-        padding: 16px 20px; margin: 12px 0 0;
-        box-shadow: 0 4px 20px rgba(123,34,82,.08);
-        min-height: 72px; font-size: 14px; color: var(--ink-2); line-height: 1.8;
+        min-height: 64px;
+        background: #fff;
+        border-radius: 16px;
+        padding: 16px 18px 18px;
+        margin: 14px 0 0;
+        text-align: left;
+        box-shadow: 0 2px 10px rgba(0,0,0,.04);
+        border: 1px solid rgba(0,0,0,.04);
       }
-      .guide-mobile-desc strong {
-        display: block; font-size: 11px; font-weight: 700;
-        color: var(--brand); margin-bottom: 6px;
-        letter-spacing: .06em; text-transform: uppercase;
+      .guide-mobile-desc-title {
+        font-size: 14px;
+        font-weight: 900;
+        color: var(--brand);
+        margin-bottom: 8px;
+        letter-spacing: .02em;
       }
+      .guide-mobile-desc-body {
+        font-size: 13.5px;
+        color: var(--ink-2);
+        line-height: 1.8;
+      }
+      .guide-mobile-desc:empty { display: none; }
 
-      .guide-left-footer { padding: 0; padding-top: 8px; text-align: center; }
+      .guide-left-footer { padding-top: 4px; margin-top: 16px; }
+      .guide-dates-label { font-size: 11px; margin-bottom: 6px; }
       .guide-dates { justify-content: center; }
+      .guide-date { font-size: 13px; padding: 6px 10px; }
+      .guide-neo-cta { padding: 12px 24px; font-size: 14px; margin-top: 12px; }
     }
 
     /* ── PLAN ── */
@@ -882,7 +1089,7 @@
     .signup-detail-row {
       display: flex; align-items: flex-start;
       gap: 16px;
-      padding: 20px 0;
+      padding: 14px 0;
       border-bottom: 1px solid rgba(0,0,0,.08);
       font-size: 14px; line-height: 1.6;
     }
@@ -900,6 +1107,18 @@
       color: var(--brand);
       font-weight: 900;
     }
+    .signup-scroll-hint {
+      margin-top: 14px;
+      text-align: center;
+      font-size: 13px; font-weight: 700;
+      color: var(--ink-3);
+      letter-spacing: .08em;
+      animation: scrollHintBob 1.6s ease-in-out infinite;
+    }
+    @keyframes scrollHintBob {
+      0%, 100% { transform: translateY(0); opacity: .6; }
+      50%      { transform: translateY(4px); opacity: 1; }
+    }
     .signup-fallback {
       font-size: 13px;
       color: var(--ink-3);
@@ -916,29 +1135,6 @@
       box-shadow: 0 4px 40px rgba(0,0,0,.08);
       padding: 32px 28px;
       overflow: hidden;
-    }
-    /* Scroll hint overlay at bottom of form card */
-    .signup-right {
-      position: relative;
-    }
-    .signup-scroll-hint {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 80px;
-      background: linear-gradient(to top, #fff 40%, transparent 100%);
-      display: flex; align-items: flex-end; justify-content: center;
-      padding-bottom: 12px;
-      pointer-events: none;
-      border-radius: 0 0 20px 20px;
-    }
-    .signup-scroll-hint span {
-      font-size: 12px; font-weight: 700; color: var(--brand);
-      letter-spacing: .06em;
-      animation: scrollHintBounce 1.6s ease-in-out infinite;
-    }
-    @keyframes scrollHintBounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(5px); }
     }
     .signup-form-card iframe {
       display: block;
@@ -993,11 +1189,8 @@
         font-size: 13px;
       }
       .signup-detail-row:nth-child(odd) {
-        padding-right: 24px;
+        padding-right: 12px;
         border-right: 1px solid rgba(0,0,0,.07);
-      }
-      .signup-detail-row:nth-child(even) {
-        padding-left: 24px;
       }
       .signup-detail-label {
         font-size: 11px;
@@ -1152,8 +1345,9 @@
   <!-- HERO -->
   <div class="hero-section-wrap">
   <section class="hero">
-    <div class="hero-inner">
 
+    <!-- 左：文字 -->
+    <div class="hero-left">
       <div class="hero-eyebrow">
         <div class="dot"></div>
         高一數學試聽・名額有限
@@ -1164,23 +1358,29 @@
         <span class="hl">兩位頂尖數學名師</span>
       </h1>
 
-      <p class="hero-benefit"><strong>免費試聽</strong>，開學前找到對的老師</p>
+      <div class="hero-benefits">
+        <p class="hero-benefit">
+          <strong>免費試聽</strong>，開學前找到對的老師
+        </p>
+      </div>
 
-      <!-- 兩位老師等重卡片 -->
+      <!-- 老師照片卡（點擊跳到 #guide） -->
       <div class="hero-teachers">
-        <a class="hero-teacher-card" href="#guide" data-tab="jie" aria-label="了解解創智老師">
+        <a href="#guide" class="hero-teacher-card">
           <div class="hero-teacher-photo">
             <img src="teacher-jie.jpg" alt="解創智老師" />
           </div>
           <div class="hero-teacher-info">
+            <div class="hero-teacher-name">解創智老師</div>
             <div class="hero-teacher-tag">傳奇數學名師</div>
           </div>
         </a>
-        <a class="hero-teacher-card" href="#guide" data-tab="chen" aria-label="了解陳建州老師">
+        <a href="#guide" class="hero-teacher-card">
           <div class="hero-teacher-photo">
             <img src="teacher-chen.jpg" alt="陳建州老師" />
           </div>
           <div class="hero-teacher-info">
+            <div class="hero-teacher-name">陳建州老師</div>
             <div class="hero-teacher-tag">數學鬼才</div>
           </div>
         </a>
@@ -1191,9 +1391,9 @@
         <a href="#schedule" class="btn-transition">查看更多</a>
       </div>
 
-      <p class="hero-rewards">聽一堂 ☕ 大杯星巴克・兩堂拿 💰 1,000 元現金</p>
-
+      <p class="hero-reward-combo">聽一堂 <span class="reward">☕ 大杯星巴克</span>・兩堂拿 <span class="reward">💰 1,000 元現金</span></p>
     </div>
+
   </section>
   </div>
 
@@ -1201,7 +1401,7 @@
   <!-- STAKES -->
   <section class="stakes">
     <div class="stakes-inner">
-      <p class="stakes-eyebrow">國三升高一時如果準備不足</p>
+      <p class="stakes-eyebrow">國三升高一時 <span class="stakes-eyebrow-hl">如果準備不足</span></p>
       <h2 class="stakes-headline">第一次段考容易<br>成績下滑</h2>
       <p class="stakes-sub">不是學生不認真，<br>問題出在這兩件事</p>
       <div class="stakes-sub-arrow" aria-hidden="true">
@@ -1347,7 +1547,7 @@
   </section>
 
   <!-- GUIDE -->
-  <section class="guide" id="guide">
+  <section class="guide">
 
     <!-- Header -->
     <div class="guide-header">
@@ -1371,7 +1571,6 @@
           <div class="guide-teacher-name-lg">解創智老師</div>
           <div class="guide-teacher-badge">30 年數學名師</div>
 
-          <div class="accord-list-wrap">
           <div class="accord-list">
 
             <div class="accord-item open">
@@ -1425,7 +1624,6 @@
             </div>
 
           </div>
-          </div><!-- /.accord-list-wrap -->
 
           <!-- Mobile: description shown here when pill is tapped -->
           <div class="guide-mobile-desc"></div>
@@ -1448,9 +1646,11 @@
              href="https://www.youtube.com/watch?v=2MDNehWOWjc"
              target="_blank" rel="noopener"
              aria-label="觀看解創智老師介紹影片">
-            <img src="https://img.youtube.com/vi/2MDNehWOWjc/maxresdefault.jpg"
-                 onerror="this.onerror=null;this.src='https://img.youtube.com/vi/2MDNehWOWjc/hqdefault.jpg';"
-                 alt="解創智老師介紹影片縮圖" />
+            <img src="https://img.youtube.com/vi/2MDNehWOWjc/hqdefault.jpg"
+                 onerror="this.onerror=null;this.src='https://img.youtube.com/vi/2MDNehWOWjc/mqdefault.jpg';"
+                 alt="解創智老師介紹影片縮圖"
+                 loading="lazy"
+                 referrerpolicy="no-referrer" />
             <span class="guide-right-play" aria-hidden="true">
               <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </span>
@@ -1470,7 +1670,6 @@
           <div class="guide-teacher-name-lg">陳建州老師</div>
           <div class="guide-teacher-badge">數學鬼才</div>
 
-          <div class="accord-list-wrap">
           <div class="accord-list">
 
             <div class="accord-item open">
@@ -1514,7 +1713,6 @@
             </div>
 
           </div>
-          </div><!-- /.accord-list-wrap -->
 
           <div class="guide-mobile-desc"></div>
 
@@ -1535,9 +1733,11 @@
              href="https://www.youtube.com/watch?v=tdT3xcECfp4"
              target="_blank" rel="noopener"
              aria-label="觀看陳建州老師介紹影片">
-            <img src="https://img.youtube.com/vi/tdT3xcECfp4/maxresdefault.jpg"
-                 onerror="this.onerror=null;this.src='https://img.youtube.com/vi/tdT3xcECfp4/hqdefault.jpg';"
-                 alt="陳建州老師介紹影片縮圖" />
+            <img src="https://img.youtube.com/vi/tdT3xcECfp4/hqdefault.jpg"
+                 onerror="this.onerror=null;this.src='https://img.youtube.com/vi/tdT3xcECfp4/mqdefault.jpg';"
+                 alt="陳建州老師介紹影片縮圖"
+                 loading="lazy"
+                 referrerpolicy="no-referrer" />
             <span class="guide-right-play" aria-hidden="true">
               <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </span>
@@ -1674,45 +1874,44 @@
             title="高一數學試聽報名表">
           </iframe>
         </div>
-        <div class="signup-scroll-hint" id="signupScrollHint">
-          <span>↓ 往下填寫</span>
-        </div>
+        <p class="signup-scroll-hint" aria-hidden="true">↓ 往下填寫</p>
       </div>
 
     </div>
   </section>
 
 
-  <!-- Hero teacher card → guide tab -->
+  <!-- Thumbnail switcher -->
   <script>
-    // ── Signup scroll hint: hide once user scrolls past it ──
-    (function() {
-      var hint = document.getElementById('signupScrollHint');
-      if (!hint) return;
-      window.addEventListener('scroll', function() {
-        var rect = hint.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.6) {
-          hint.style.transition = 'opacity .4s';
-          hint.style.opacity = '0';
-          hint.style.pointerEvents = 'none';
-        }
+    (function () {
+      const mainImg = document.getElementById('heroMainImg');
+      const mainName = document.getElementById('heroMainName');
+      const mainTag = document.getElementById('heroMainTag');
+      const mainCard = document.getElementById('heroMainCard');
+      const thumbs = document.querySelectorAll('.hero-teacher-thumb');
+      if (!mainImg || !thumbs.length) return;
+
+      thumbs.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (btn.classList.contains('is-active')) return;
+          thumbs.forEach(function (b) { b.classList.remove('is-active'); });
+          btn.classList.add('is-active');
+          const nextSrc = btn.dataset.img;
+          const nextName = btn.dataset.name || '';
+          const nextTag = btn.dataset.tag || '';
+          mainCard.classList.add('is-swapping');
+          setTimeout(function () {
+            mainImg.src = nextSrc;
+            mainImg.alt = nextName;
+            if (mainName) mainName.textContent = nextName;
+            if (mainTag) mainTag.textContent = nextTag;
+            requestAnimationFrame(function () {
+              mainCard.classList.remove('is-swapping');
+            });
+          }, 180);
+        });
       });
     })();
-  </script>
-
-  <script>
-    document.querySelectorAll('.hero-teacher-card[data-tab]').forEach(function(card) {
-      card.addEventListener('click', function(e) {
-        var tab = card.dataset.tab;
-        // Activate the matching guide tab
-        document.querySelectorAll('.guide-tab').forEach(function(t) { t.classList.remove('active'); });
-        document.querySelectorAll('.guide-panel').forEach(function(p) { p.classList.remove('active'); });
-        var matchTab = document.querySelector('.guide-tab[data-panel="' + tab + '"]');
-        var matchPanel = document.getElementById('panel-' + tab);
-        if (matchTab) matchTab.classList.add('active');
-        if (matchPanel) matchPanel.classList.add('active');
-      });
-    });
   </script>
 
   <!-- Carousel / accordion -->
@@ -1728,42 +1927,42 @@
     });
 
     // ── Guide: Accordion ──
+    function setMobileDesc(left, item) {
+      const mobileDesc = left.querySelector('.guide-mobile-desc');
+      if (!mobileDesc) return;
+      if (!item) {
+        mobileDesc.innerHTML = '';
+        return;
+      }
+      const label = item.querySelector('.accord-label');
+      const bodyText = item.querySelector('.accord-body p');
+      const title = label ? label.textContent.trim() : '';
+      const body = bodyText ? bodyText.textContent.trim() : '';
+      mobileDesc.innerHTML =
+        '<div class="guide-mobile-desc-title">' + title + '</div>' +
+        '<div class="guide-mobile-desc-body">' + body + '</div>';
+    }
+
     document.querySelectorAll('.accord-trigger').forEach(trigger => {
       trigger.addEventListener('click', () => {
         const item = trigger.closest('.accord-item');
         const isOpen = item.classList.contains('open');
         const list = item.closest('.accord-list');
-        // Close all in same list
+        const left = item.closest('.guide-left');
         list.querySelectorAll('.accord-item').forEach(i => i.classList.remove('open'));
-        // Open clicked if it was closed
         if (!isOpen) {
           item.classList.add('open');
-          const mobileDesc = item.closest('.guide-left').querySelector('.guide-mobile-desc');
-          if (mobileDesc) {
-            const label = item.querySelector('.accord-label');
-            const bodyText = item.querySelector('.accord-body p');
-            mobileDesc.innerHTML =
-              (label ? '<strong>' + label.textContent + '</strong>' : '') +
-              (bodyText ? bodyText.textContent : '');
-          }
+          setMobileDesc(left, item);
         } else {
-          const mobileDesc = item.closest('.guide-left').querySelector('.guide-mobile-desc');
-          if (mobileDesc) mobileDesc.innerHTML = '';
+          setMobileDesc(left, null);
         }
       });
     });
 
-    // Init description card with first open chip
+    // Init mobile desc with first open item per panel
     document.querySelectorAll('.guide-left').forEach(left => {
       const openItem = left.querySelector('.accord-item.open');
-      const mobileDesc = left.querySelector('.guide-mobile-desc');
-      if (openItem && mobileDesc) {
-        const label = openItem.querySelector('.accord-label');
-        const bodyText = openItem.querySelector('.accord-body p');
-        mobileDesc.innerHTML =
-          (label ? '<strong>' + label.textContent + '</strong>' : '') +
-          (bodyText ? bodyText.textContent : '');
-      }
+      if (openItem) setMobileDesc(left, openItem);
     });
 
     // ── Carousel autoplay ──
@@ -1838,7 +2037,7 @@
         <p>📞 洽詢專線：<a href="tel:0223145818">02-23145818</a>　/　<a href="tel:0223140668">02-23140668</a></p>
         <p>📍 台北市中山南路 2 巷 5 號（捷運北車 M8 出口）</p>
       </div>
-      <p class="footer-disclaimer">得勝者文教擁有活動最終解釋權</p>
+      <p class="footer-disclaimer">得勝者擁有活動最終解釋權</p>
       <p class="footer-copy">© 2026 VICTOR<sup>+</sup> 得勝者文教</p>
     </div>
   </footer>
